@@ -1,11 +1,13 @@
+"use client"
 import { memo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import styles from "./index.module.scss";
 import { ScoreButton } from "../ScoreButton";
 import { MatchDetails } from "../../types";
 import { getIconsByStatus } from "@/app/helpers";
 import Score from "../Score";
+
+import styles from "./index.module.scss";
 
 type ScoreCardType = { result: MatchDetails };
 

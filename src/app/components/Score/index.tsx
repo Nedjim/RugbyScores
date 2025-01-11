@@ -11,7 +11,6 @@ type ScoreType = {
 const Score = (props: ScoreType) => {
   const { value, success, isHidden } = props;
 
-  console.log({ success });
   return (
     <span
       className={clsx(
