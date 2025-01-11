@@ -1,0 +1,10 @@
+.score {
+  padding: 4px;
+  border-radius: 10px;
+  font-size: 14px;
+
+  &.success {
+    background: green;
+    color: white;
+  }
+}
