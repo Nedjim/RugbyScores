@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Header from "./container/Header";
 import Content from "./container/Content";
 import dayjs from "dayjs";
@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <AppContext.Provider value={{date, setDate}}>
+      <AppContext.Provider value={{ date, setDate }}>
         <Content />
       </AppContext.Provider>
     </div>

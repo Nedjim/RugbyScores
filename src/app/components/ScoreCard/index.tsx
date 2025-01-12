@@ -3,16 +3,16 @@ import { memo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { ScoreButton } from "../ScoreButton";
-import { MatchDetails } from "../../types";
 import { getIconsByStatus } from "@/app/helpers";
 import Score from "../Score";
 
 import styles from "./index.module.scss";
+import { MatchDetails } from "@/app/api/types";
 
-type ScoreCardType = { result: MatchDetails };
+type ScoreCardType = { match: MatchDetails };
 
 const ScoreCard = (props: ScoreCardType) => {
-  const { result } = props;
+  const { match } = props;
 
   const {
     comp_name: competionName,
@@ -23,7 +23,7 @@ const ScoreCard = (props: ScoreCardType) => {
     home_score: homeScore,
     away_score: awayScore,
     status,
-  } = result;
+  } = match;
 
   const [showScore, setShowScore] = useState(false);
 

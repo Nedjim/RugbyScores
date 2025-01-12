@@ -1,39 +1,41 @@
-"use client"
+"use client";
 import { memo, useContext } from "react";
+import { SWRConfig } from "swr";
+import { AppContext } from "@/app/context";
+import { useScoresByDate } from "@/app/api/hooks";
 
 import Aside from "../Aside";
-import useSWR from "swr";
 import styles from "./index.module.scss";
 import ScoreCard from "@/app/components/ScoreCard";
-import { getScoresByDate } from "@/app/api/routes";
-import { AppContext } from "@/app/context";
-import { Dayjs } from "dayjs";
-
-const fetcher = (date?: Dayjs) => date && getScoresByDate(date);
 
 const Content = () => {
-  const context = useContext(AppContext);
-  const { date } = context;
+  const { date }  = useContext(AppContext);
+  const { data, error, isLoading } = useScoresByDate(date);
 
-  const { data, error, isLoading } = useSWR(date,  fetcher)
-
-  if (isLoading) {
-    return 'Loading ...';
+  if (isLoading || !data) {
+    return "Loading ...";
   }
 
   if (error) {
-    return 'Error';
+    return "Error";
   }
-
+  
   return (
-    <div className={styles.content}>
-      <Aside />
-      <div className={styles.results}>
-        {data.results.map((result, key) => {
-          return <ScoreCard key={key} result={result} />;
-        })}
+    <SWRConfig
+      value={{
+        fetcher: (resource, init) =>
+          fetch(resource, init).then((res) => res.json()),
+      }}
+    >
+      <div className={styles.content}>
+        <Aside />
+        <div className={styles.results}>
+          {data.map((match, key) => {
+            return <ScoreCard key={key} match={match} />;
+          })}
+        </div>
       </div>
-    </div>
+    </SWRConfig>
   );
 };
 

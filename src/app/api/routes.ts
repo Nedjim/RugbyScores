@@ -1,6 +1,7 @@
 import axios from "axios";
 import dayjs, { Dayjs } from "dayjs";
 import { mock } from "./mock";
+import { ScoresByDateResponse } from "./types";
 
 const API_URL = "https://rugby-live-data.p.rapidapi.com";
 const API_DATE_FORMAT = 'YYYY-MM-DD';
@@ -19,8 +20,8 @@ export async function getScoresByDate(date: Dayjs) {
     headers: HEADERS,
   };
 
-  //const response = await axios.request(options);
+  const response = await axios.request<ScoresByDateResponse>(options);
 
-  //return response.data;
-  return mock;
+  //return response.data.results;
+  return mock.results;
 }

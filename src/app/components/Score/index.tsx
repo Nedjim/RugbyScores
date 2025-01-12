@@ -3,7 +3,7 @@ import styles from "./index.module.scss";
 import clsx from "clsx";
 
 type ScoreType = {
-  value: string;
+  value: number;
   success: boolean;
   isHidden: boolean;
 };
