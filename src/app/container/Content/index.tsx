@@ -6,10 +6,10 @@ import { useScoresByDate } from "@/app/api/hooks";
 
 import Aside from "../Aside";
 import styles from "./index.module.scss";
-import ScoreCard from "@/app/components/ScoreCard";
+import Results from "./Results";
 
 const Content = () => {
-  const { date }  = useContext(AppContext);
+  const { date } = useContext(AppContext);
   const { data, error, isLoading } = useScoresByDate(date);
 
   if (isLoading || !data) {
@@ -19,7 +19,7 @@ const Content = () => {
   if (error) {
     return "Error";
   }
-  
+
   return (
     <SWRConfig
       value={{
@@ -29,11 +29,7 @@ const Content = () => {
     >
       <div className={styles.content}>
         <Aside />
-        <div className={styles.results}>
-          {data.map((match, key) => {
-            return <ScoreCard key={key} match={match} />;
-          })}
-        </div>
+        <Results data={data} />
       </div>
     </SWRConfig>
   );

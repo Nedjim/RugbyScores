@@ -1,13 +1,16 @@
 import { TextField } from "@mui/material";
 import { memo } from "react";
 
-const FilterInput = () => {
+const FilterInput = (props: { onChange: (event: Event) => void; label: string }) => {
+  const { onChange, label } = props;
+
   return (
     <TextField
       id="outlined-basic"
-      label="Team or city"
+      label={label}
       variant="outlined"
       size="small"
+      onChange={onChange}
       fullWidth
     />
   );

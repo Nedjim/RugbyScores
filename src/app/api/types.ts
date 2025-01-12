@@ -1,3 +1,25 @@
+export type Meta = {
+  title: string;
+  description: string;
+  fields: {
+    id: string;
+    comp_id: string;
+    comp_name: string;
+    season: string;
+    date: string;
+    game_week: string;
+    home: string;
+    away: string;
+    home_id: string;
+    away_id: string;
+    status: string;
+    venue: string;
+    home_score: string;
+    away_score: string;
+    updated: string;
+  };
+};
+
 export type MatchStatus =
   | "Not Started"
   | "First Half"
@@ -24,28 +46,6 @@ export type MatchDetails = {
   home_score: number;
   away_score: number;
   updated: string;
-};
-
-export type Meta = {
-  title: string;
-  description: string;
-  fields: {
-    id: string;
-    comp_id: string;
-    comp_name: string;
-    season: string;
-    date: string;
-    game_week: string;
-    home: string;
-    away: string;
-    home_id: string;
-    away_id: string;
-    status: string;
-    venue: string;
-    home_score: string;
-    away_score: string;
-    updated: string;
-  };
 };
 
 export type ScoresByDateResponse = {

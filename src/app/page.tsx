@@ -7,11 +7,24 @@ import { useState } from "react";
 
 export default function Home() {
   const [date, setDate] = useState(dayjs());
+  const [teamFilter, setTeamFilter] = useState<string | null>(null);
+  const [competitionFilter, setCompetitionFilter] = useState<string | null>(
+    null
+  );
 
   return (
     <div>
       <Header />
-      <AppContext.Provider value={{ date, setDate }}>
+      <AppContext.Provider
+        value={{
+          date,
+          setDate,
+          teamFilter,
+          setTeamFilter,
+          competitionFilter,
+          setCompetitionFilter,
+        }}
+      >
         <Content />
       </AppContext.Provider>
     </div>
