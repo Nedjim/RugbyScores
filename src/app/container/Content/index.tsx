@@ -1,22 +1,29 @@
-import { memo } from "react";
-import Aside from "../Aside";
+"use client"
+import { memo, useContext } from "react";
 
+import Aside from "../Aside";
+import useSWR from "swr";
 import styles from "./index.module.scss";
-import { mock } from "@/app/api/mock";
 import ScoreCard from "@/app/components/ScoreCard";
+import { getScoresByDate } from "@/app/api/routes";
+import { AppContext } from "@/app/context";
+import { Dayjs } from "dayjs";
+
+const fetcher = (date?: Dayjs) => date && getScoresByDate(date);
 
 const Content = () => {
-  // const { data, error, isLoading } = useSWR('scores-by-date', getScoresByDate)
+  const context = useContext(AppContext);
+  const { date } = context;
 
-  const { data } = mock;
+  const { data, error, isLoading } = useSWR(date,  fetcher)
 
-  // if (isLoading) {
-  //   return 'Loading ...';
-  // }
+  if (isLoading) {
+    return 'Loading ...';
+  }
 
-  // if (error) {
-  //   return 'Error';
-  // }
+  if (error) {
+    return 'Error';
+  }
 
   return (
     <div className={styles.content}>

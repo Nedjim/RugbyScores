@@ -4,6 +4,8 @@ import {faHourglassHalf} from "@fortawesome/free-solid-svg-icons/faHourglassHalf
 import {faHourglass} from "@fortawesome/free-solid-svg-icons/faHourglass";
 import { MatchStatus } from "../types";
 
+export const DATE_FORMAT = 'DD/MM/YYYY';
+
 export const getIconsByStatus = (status: MatchStatus) => {
   switch (status) {
     case "Result":

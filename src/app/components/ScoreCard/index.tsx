@@ -40,7 +40,6 @@ const ScoreCard = (props: ScoreCardType) => {
         <div className={styles.body}>
           <div className={styles.team}>
             <span>{home}</span>
-
             <Score
               value={homeScore}
               success={homeScore > awayScore}
@@ -49,7 +48,6 @@ const ScoreCard = (props: ScoreCardType) => {
           </div>
           <div className={styles.team}>
             <span>{away}</span>
-
             <Score
               value={awayScore}
               success={awayScore > homeScore}

@@ -1,6 +1,10 @@
 .calendarWrapper {
   margin-right: 16px;
-  .calendar {
-    width: 200px;
+
+  .datePicker {
+   input {
+    padding: 8px 16px;
+   }
   }
+
 }
