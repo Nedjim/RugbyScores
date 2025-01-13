@@ -1,10 +1,10 @@
-import ScoreCard from "@/app/components/ScoreCard";
 import { memo, useContext, useMemo } from "react";
-import styles from "./index.module.scss";
-import { MatchDetails } from "@/app/api/types";
+import { Match } from "@/app/api/types";
 import { AppContext } from "@/app/context";
+import MatchCard from "../MatchCard";
+import styles from "./index.module.scss";
 
-const Results = (props: { data: MatchDetails[] }) => {
+const MatchList = (props: { data: Match[] }) => {
   const { data } = props;
   const { teamFilter, competitionFilter} = useContext(AppContext);
 
@@ -34,12 +34,12 @@ const Results = (props: { data: MatchDetails[] }) => {
   }
 
   return (
-    <div className={styles.results}>
+    <div className={styles.matchList}>
       {filteredData.map((match, key) => {
-        return <ScoreCard key={key} match={match} />;
+        return <MatchCard key={key} match={match} />;
       })}
     </div>
   );
 };
 
-export default memo(Results);
+export default memo(MatchList);

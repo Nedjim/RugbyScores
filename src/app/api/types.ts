@@ -30,7 +30,7 @@ export type MatchStatus =
   | "Cancelled"
   | "Result";
 
-export type MatchDetails = {
+export type Match = {
   id: string;
   comp_id: number;
   comp_name: string;
@@ -50,5 +50,5 @@ export type MatchDetails = {
 
 export type ScoresByDateResponse = {
   meta: Meta;
-  results: MatchDetails[];
+  results: Match[];
 };

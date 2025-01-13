@@ -1,0 +1,42 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid #eeeeee;
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      .season {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .body {
+    min-height: 60px;
+    padding: 16px;
+    .team {
+      display: flex;
+      justify-content: space-between;
+    }
+    .score {
+      display: flex;
+      justify-content: end;
+      margin-top: 8px;
+    }
+  }
+
+  .footer {
+    padding: 16px;
+    text-align: right;
+    border-top: 1px solid #eeeeee;
+    font-size: 14px;
+  }
+}

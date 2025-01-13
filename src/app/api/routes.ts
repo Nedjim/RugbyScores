@@ -22,6 +22,6 @@ export async function getScoresByDate(date: Dayjs) {
 
   const response = await axios.request<ScoresByDateResponse>(options);
 
-  //return response.data.results;
+  // return response.data.results;
   return mock.results;
 }

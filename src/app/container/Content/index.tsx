@@ -3,10 +3,9 @@ import { memo, useContext } from "react";
 import { SWRConfig } from "swr";
 import { AppContext } from "@/app/context";
 import { useScoresByDate } from "@/app/api/hooks";
-
 import Aside from "../Aside";
+import MatchList from "./MatchList";
 import styles from "./index.module.scss";
-import Results from "./Results";
 
 const Content = () => {
   const { date } = useContext(AppContext);
@@ -29,7 +28,7 @@ const Content = () => {
     >
       <div className={styles.content}>
         <Aside />
-        <Results data={data} />
+        <MatchList data={data} />
       </div>
     </SWRConfig>
   );
