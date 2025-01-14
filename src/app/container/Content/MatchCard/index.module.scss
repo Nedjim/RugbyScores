@@ -22,14 +22,18 @@
   .body {
     min-height: 60px;
     padding: 16px;
+
     .team {
       display: flex;
       justify-content: space-between;
     }
-    .score {
+
+    .actions {
       display: flex;
+      flex-direction: column;
       justify-content: end;
-      margin-top: 8px;
+      gap: 8px;
+      margin-top: 16px;
     }
   }
 

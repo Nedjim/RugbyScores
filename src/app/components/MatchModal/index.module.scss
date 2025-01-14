@@ -1,0 +1,19 @@
+.modalContent {
+  background: white;
+  width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  margin-top: 40px;
+
+  .teams {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    gap: 16px;
+
+    .team {
+      border: 1px solid grey;
+      width: 50%;
+    }
+  }
+}

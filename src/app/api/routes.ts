@@ -1,7 +1,8 @@
 import axios from "axios";
 import dayjs, { Dayjs } from "dayjs";
-import { mock } from "./mock";
-import { ScoresByDateResponse } from "./types";
+import {ScoresByDateResponse } from "./types";
+import { SCORES_BY_DATE_MOCK } from "./mocks/scores-by-date";
+import { MATCH_MOCK } from "./mocks/match";
 
 const API_URL = "https://rugby-live-data.p.rapidapi.com";
 const API_DATE_FORMAT = 'YYYY-MM-DD';
@@ -23,5 +24,20 @@ export async function getScoresByDate(date: Dayjs) {
   const response = await axios.request<ScoresByDateResponse>(options);
 
   // return response.data.results;
-  return mock.results;
+  return SCORES_BY_DATE_MOCK.results;
+}
+
+export async function getMatch(id: number) {
+  const type = 'match';
+
+  const options = {
+    method: "GET",
+    url: `${API_URL}/${type}/${id}`,
+    headers: HEADERS,
+  };
+
+  const response = await axios.request(options);
+
+  //return response.data.results;
+  return MATCH_MOCK;
 }

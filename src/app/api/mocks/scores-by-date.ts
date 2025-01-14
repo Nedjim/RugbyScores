@@ -1,26 +1,4 @@
-export const mock = {
-  meta: {
-    title: "Live Rugby API -  Fixtures for 2025-01-11",
-    description: "Fixtures and results for 2025-01-11",
-    fields: {
-      id: "Integer - unique fixture id, use to query match endpoint",
-      comp_id: "Integer",
-      comp_name: "String",
-      season: "Integer",
-      date: "Timestamp - ISO 8601 - always UTC",
-      game_week: "Integer",
-      home: "String",
-      away: "String",
-      home_id: "Integer",
-      away_id: "Integer",
-      status:
-        "String - Not Started, First Half, Half Time, Second Half, Full Time, Postponed, Cancelled, Result",
-      venue: "String",
-      home_score: "Integer",
-      away_score: "Integer",
-      updated: "Timestamp - IS0 8601 - always UTC",
-    },
-  },
+export const SCORES_BY_DATE_MOCK = {
   results: [
     {
       id: 8505601,

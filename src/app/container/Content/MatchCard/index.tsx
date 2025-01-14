@@ -3,9 +3,10 @@ import { memo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getIconsByStatus } from "@/app/helpers";
 import { Match } from "@/app/api/types";
-import { ScoreButton } from "@/app/components/ScoreButton";
+import { ActionButton } from "@/app/components/ActionButton";
 import Score from "@/app/components/Score";
 import styles from "./index.module.scss";
+import MatchModal from "@/app/components/MatchModal";
 
 type MatchCardType = { match: Match };
 
@@ -13,6 +14,7 @@ const MatchCard = (props: MatchCardType) => {
   const { match } = props;
 
   const {
+    id,
     comp_name: competionName,
     season,
     home,
@@ -24,7 +26,9 @@ const MatchCard = (props: MatchCardType) => {
   } = match;
 
   const [showScore, setShowScore] = useState(false);
+  const [showCompositions, setShowCompositions] = useState(false);
 
+  console.log({ showCompositions });
   return (
     <div className={styles.card}>
       <div className={styles.header}>
@@ -51,13 +55,19 @@ const MatchCard = (props: MatchCardType) => {
             isHidden={!showScore}
           />
         </div>
-        <div className={styles.score}>
-          <ScoreButton
+        <div className={styles.actions}>
+          <ActionButton
             label={showScore ? "hide result" : "show result"}
             disabled={showScore}
             onClick={() => {
-              console.log("hehe");
               setShowScore(!showScore);
+            }}
+          />
+          <ActionButton
+            label="show compositions"
+            disabled={showCompositions}
+            onClick={() => {
+              setShowCompositions(!showCompositions);
             }}
           />
         </div>
@@ -65,6 +75,15 @@ const MatchCard = (props: MatchCardType) => {
       <div className={styles.footer}>
         <span>{venue}</span>
       </div>
+      {showCompositions && (
+        <MatchModal
+          isOpen={showCompositions}
+          onClose={() => setShowCompositions(false)}
+          id={id}
+          away={away}
+          home={home}
+        />
+      )}
     </div>
   );
 };
