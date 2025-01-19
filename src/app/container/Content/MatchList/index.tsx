@@ -12,7 +12,7 @@ const MatchList = () => {
   return (
     <>
       {isLoading && <div className={styles.loading}>Loading ...</div>}
-      {!isLoading && error && <div>Loading ...</div>}
+      {!isLoading && error && <div>Error </div>}
       {!isLoading && !error && data && <Matchs data={data} />}
     </>
   );
@@ -20,35 +20,42 @@ const MatchList = () => {
 
 const Matchs = (props: { data: Match[] }) => {
   const { data } = props;
-  const { teamFilter, competitionFilter } = useContext(AppContext);
+  const { teamFilter, competitionFilter, statusFilter } = useContext(AppContext);
 
   const filteredData = useMemo(() => {
-    if (teamFilter || competitionFilter) {
+    if (teamFilter || competitionFilter || statusFilter) {
       return data.filter((match) => {
         let tmpTeam = true;
         let tmpComp = true;
+        let tmpStatus = true;
 
         if (teamFilter) {
           tmpTeam =
             match.home.toLowerCase().includes(teamFilter.toLowerCase()) ||
             match.away.toLowerCase().includes(teamFilter.toLowerCase());
         }
+
         if (competitionFilter) {
           tmpComp = match.comp_name
             .toLowerCase()
             .includes(competitionFilter.toLowerCase());
         }
-        return tmpTeam && tmpComp;
+
+        if (statusFilter?.length) {
+          tmpStatus =  statusFilter.includes(match.status);
+        }
+      
+        return tmpTeam && tmpComp && tmpStatus;
       });
     }
     return data;
-  }, [teamFilter, competitionFilter, data]);
+  }, [teamFilter, competitionFilter, statusFilter, data]);
 
   return (
     <div className={styles.matchList}>
       {!filteredData.length && (
         <div className={styles.emptyData}>
-          Sorry, no results at this date...please change your filters.
+          Sorry, no matchs found...please change your filters.
         </div>
       )}
       {filteredData.map((match, key) => {

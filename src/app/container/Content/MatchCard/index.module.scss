@@ -4,17 +4,34 @@
   height: min-content;
   width: 280px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  border-radius: 16px;
+  border-radius: 8px;
+  transition: 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+    .header {
+      background: #253659;
+      color: white;
+    }
+  }
 
   .header {
     display: flex;
     justify-content: space-between;
     padding: 16px;
     border-bottom: 1px solid #eeeeee;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    transition: 0.3s;
 
     .left {
       display: flex;
       flex-direction: column;
+      .compName {
+        font-weight: 400;
+      }
       .season {
         font-size: 14px;
       }

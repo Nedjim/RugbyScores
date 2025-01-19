@@ -2,6 +2,7 @@ import { Fade, Modal } from "@mui/material";
 import { memo } from "react";
 import styles from "./index.module.scss";
 import { useMatch } from "@/app/api/hooks";
+import { Player, Referee } from "@/app/api/types";
 
 type MatchModalType = {
   isOpen: boolean;
@@ -52,7 +53,7 @@ const MatchModal = (props: MatchModalType) => {
   );
 };
 
-const Players = (props: { players: any }) => {
+const Players = (props: { players: Player[] }) => {
   const { players } = props;
 
   return (
@@ -72,7 +73,7 @@ const Players = (props: { players: any }) => {
   );
 };
 
-const Referees = (props: { referees: any }) => {
+const Referees = (props: { referees: Referee[] }) => {
   const { referees } = props;
 
   return <div>
@@ -85,4 +86,5 @@ const Referees = (props: { referees: any }) => {
     })}
   </div>
 }
+
 export default memo(MatchModal);

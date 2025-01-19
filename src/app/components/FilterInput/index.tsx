@@ -1,7 +1,10 @@
 import { TextField } from "@mui/material";
 import { memo } from "react";
 
-const FilterInput = (props: { onChange: (event: Event) => void; label: string }) => {
+const FilterInput = (props: {
+  onChange: (value: string) => void;
+  label: string;
+}) => {
   const { onChange, label } = props;
 
   return (
@@ -10,7 +13,7 @@ const FilterInput = (props: { onChange: (event: Event) => void; label: string })
       label={label}
       variant="outlined"
       size="small"
-      onChange={onChange}
+      onChange={(e) => onChange(e.target.value)}
       fullWidth
     />
   );

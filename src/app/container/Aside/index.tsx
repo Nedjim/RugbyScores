@@ -17,39 +17,44 @@ const Aside = () => {
 function TeamFilter() {
   const { setTeamFilter } = useContext(AppContext);
 
-  const handleChange = (value: Event) => {
-    if (setTeamFilter && value) {
-      let timeout = null;
+  const handleChange = (value: string) => {
+    if (value) {
+      let timeout = undefined;
 
       clearTimeout(timeout);
 
       timeout = setTimeout(() => {
-        setTeamFilter(value.target.value);
+        setTeamFilter(value);
       }, 1000);
     }
   };
 
-  return <FilterInput label="Team" onChange={handleChange} />;
+  return (
+    <FilterInput label="Team" onChange={handleChange} />
+  );
 }
 
 function CompetiitonFilter() {
   const { setCompetitionFilter } = useContext(AppContext);
 
-  const handleChange = (value: Event) => {
-    if (setCompetitionFilter && value) {
-      let timeout = null;
+  const handleChange = (value: string) => {
+    if (value) {
+      let timeout = undefined;
 
       clearTimeout(timeout);
 
       timeout = setTimeout(() => {
-        setCompetitionFilter(value.target.value);
+        setCompetitionFilter(value);
       }, 1000);
     }
   };
 
-  return <FilterInput label="Competition" onChange={handleChange} />;
+  return (
+    <FilterInput
+      label="Competition"
+      onChange={handleChange}
+    />
+  );
 }
-
-
 
 export default memo(Aside);

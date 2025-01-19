@@ -18,7 +18,7 @@ const Score = (props: ScoreType) => {
         success && !isHidden && styles.success,
       )}
     >
-      {isHidden ? '?' : value}
+      {isHidden ? 'x' : value}
     </span>
   );
 };

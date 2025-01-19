@@ -2,7 +2,7 @@ import {faHourglassEnd} from "@fortawesome/free-solid-svg-icons/faHourglassEnd";
 import {faHourglassStart} from "@fortawesome/free-solid-svg-icons/faHourglassStart";
 import {faHourglassHalf} from "@fortawesome/free-solid-svg-icons/faHourglassHalf";
 import {faHourglass} from "@fortawesome/free-solid-svg-icons/faHourglass";
-import { MatchStatus } from "../types";
+import { MatchStatus } from "../api/types";
 
 export const DATE_FORMAT = 'DD/MM/YYYY';
 

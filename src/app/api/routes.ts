@@ -1,43 +1,38 @@
 import axios from "axios";
 import dayjs, { Dayjs } from "dayjs";
-import {ScoresByDateResponse } from "./types";
-import { SCORES_BY_DATE_MOCK } from "./mocks/scores-by-date";
-import { MATCH_MOCK } from "./mocks/match";
+import { MatchResponse, ScoresByDateResponse } from "./types";
+import { mock } from "./mock";
 
 const API_URL = "https://rugby-live-data.p.rapidapi.com";
 const API_DATE_FORMAT = 'YYYY-MM-DD';
+
 const HEADERS = {
-  "x-rapidapi-key": "10d3d95232mshf07d6c711a45b57p1756a4jsn12fb112a270f",
-  "x-rapidapi-host": "rugby-live-data.p.rapidapi.com",
+  "x-rapidapi-key": process.env.NEXT_PUBLIC_API_KEY,
+  "x-rapidapi-host": process.env.NEXT_PUBLIC_API_HOST,
 };
 
 export async function getScoresByDate(date: Dayjs) {
-  const type = "fixtures-by-date";
   const formattedDate = dayjs(date).format(API_DATE_FORMAT);
 
   const options = {
     method: "GET",
-    url: `${API_URL}/${type}/${formattedDate}`,
+    url: `${API_URL}/fixtures-by-date/${formattedDate}`,
     headers: HEADERS,
   };
 
   const response = await axios.request<ScoresByDateResponse>(options);
 
-  // return response.data.results;
-  return SCORES_BY_DATE_MOCK.results;
+  return mock.results; //response.data.results;
 }
 
 export async function getMatch(id: number) {
-  const type = 'match';
-
   const options = {
     method: "GET",
-    url: `${API_URL}/${type}/${id}`,
+    url: `${API_URL}/match/${id}`,
     headers: HEADERS,
   };
 
-  const response = await axios.request(options);
+  const response = await axios.request<MatchResponse>(options);
 
-  //return response.data.results;
-  return MATCH_MOCK;
+  return response.data.results;
 }

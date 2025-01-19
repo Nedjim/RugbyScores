@@ -7,6 +7,7 @@ $background: #03a696;
   position: sticky;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 8px 0;
@@ -33,5 +34,9 @@ $background: #03a696;
       padding: 16px;
       cursor: pointer;
     }
+  }
+
+  @media only screen and (min-width: 365px)  {
+    flex-direction: row;
   }
 }

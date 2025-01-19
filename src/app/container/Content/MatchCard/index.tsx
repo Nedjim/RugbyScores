@@ -33,7 +33,7 @@ const MatchCard = (props: MatchCardType) => {
     <div className={styles.card}>
       <div className={styles.header}>
         <div className={styles.left}>
-          <div>{competionName}</div>
+          <div className={styles.compName}>{competionName}</div>
           <div className={styles.season}>{season}</div>
         </div>
         <FontAwesomeIcon icon={getIconsByStatus(status)} />
