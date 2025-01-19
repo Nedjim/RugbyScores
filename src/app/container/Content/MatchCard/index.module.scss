@@ -1,8 +1,10 @@
 .card {
   display: flex;
   flex-direction: column;
-  min-width: 300px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  height: min-content;
+  width: 280px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 16px;
 
   .header {
     display: flex;
@@ -38,9 +40,16 @@
   }
 
   .footer {
+    display: flex;
+    gap: 8px;
     padding: 16px;
-    text-align: right;
     border-top: 1px solid #eeeeee;
     font-size: 14px;
+
+    .stadium {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
 }

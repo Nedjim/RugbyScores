@@ -4,6 +4,8 @@ import Content from "./container/Content";
 import dayjs from "dayjs";
 import { AppContext } from "./context";
 import { useState } from "react";
+import Aside from "./container/Aside";
+import styles from "./index.module.scss";
 
 export default function Home() {
   const [date, setDate] = useState(dayjs());
@@ -13,7 +15,7 @@ export default function Home() {
   );
 
   return (
-    <div>
+    <>
       <Header />
       <AppContext.Provider
         value={{
@@ -25,8 +27,11 @@ export default function Home() {
           setCompetitionFilter,
         }}
       >
-        <Content />
+        <div className={styles.page}>
+          <Aside />
+          <Content />
+        </div>
       </AppContext.Provider>
-    </div>
+    </>
   );
 }

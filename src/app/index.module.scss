@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+.body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
+  font-family: "Roboto", serif;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}

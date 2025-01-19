@@ -1,11 +1,22 @@
 import { memo } from "react";
-import styles from './index.module.scss';
+import styles from "./index.module.scss";
 
 const Header = () => {
-  return <header className={styles.header}>
-    <h3 className={styles.title}>Rugby App</h3>
-    <span className={styles.description}>You will never again be spoiled...</span>
-  </header>
-}
+  return (
+    <header className={styles.header}>
+      <div className={styles.left}>
+        <h1 className={styles.title}>Rugby Scores</h1>
+        <span className={styles.description}>
+          You will never get spoiled again...
+        </span>
+      </div>
+      <div className={styles.menu}>
+        <div className={styles.item}>Home</div>
+        <div className={styles.item}>About us</div>
+        <div className={styles.item}>Contact</div>
+      </div>
+    </header>
+  );
+};
 
-export default memo(Header)
+export default memo(Header);

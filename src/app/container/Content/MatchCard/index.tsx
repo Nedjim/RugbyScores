@@ -1,6 +1,7 @@
 "use client";
 import { memo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons/faLocationDot';
 import { getIconsByStatus } from "@/app/helpers";
 import { Match } from "@/app/api/types";
 import { ActionButton } from "@/app/components/ActionButton";
@@ -28,7 +29,6 @@ const MatchCard = (props: MatchCardType) => {
   const [showScore, setShowScore] = useState(false);
   const [showCompositions, setShowCompositions] = useState(false);
 
-  console.log({ showCompositions });
   return (
     <div className={styles.card}>
       <div className={styles.header}>
@@ -73,7 +73,8 @@ const MatchCard = (props: MatchCardType) => {
         </div>
       </div>
       <div className={styles.footer}>
-        <span>{venue}</span>
+        <FontAwesomeIcon icon={faLocationDot} />
+        <span className={styles.stadium}>{venue}</span>
       </div>
       {showCompositions && (
         <MatchModal

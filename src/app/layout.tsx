@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import 'normalize.css';
+import styles from "./index.module.scss";
+
 
 export const metadata: Metadata = {
-  title: "Rugby App",
+  title: "Rugby Scores",
   description: "Scores",
 };
 
@@ -12,9 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={styles.body}>
         {children}
       </body>
     </html>
   );
 }
+

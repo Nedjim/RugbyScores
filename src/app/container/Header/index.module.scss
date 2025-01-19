@@ -1,7 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Diphylleia&family=Smooch+Sans:wght@100..900&display=swap");
+
+$background: #03a696;
+
 .header {
+  font-family: "Smooch Sans", serif;
+  position: sticky;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
-  padding: 0 40px;
+  padding: 8px 0;
+  background: $background;
+  color: white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    padding: 0 40px;
+
+    .title {
+      margin: 0;
+    }
+  }
+
+  .menu {
+    display: flex;
+    font-size: 18px;
+    .item {
+      border-left: 1px solid #04bf9d;
+      padding: 16px;
+      cursor: pointer;
+    }
+  }
 }

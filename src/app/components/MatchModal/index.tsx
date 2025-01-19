@@ -15,8 +15,6 @@ const MatchModal = (props: MatchModalType) => {
   const { isOpen, onClose, id, away, home } = props;
   const { data } = useMatch(id);
 
-  console.log({ away, home, data });
-
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -27,30 +25,26 @@ const MatchModal = (props: MatchModalType) => {
     >
       <Fade in={isOpen}>
         <div className={styles.modalContent}>
-          <h2 id="transition-modal-title" className="modal-title">
-            Teams players
-          </h2>
-          {data && (
-            <div className={styles.teams}>
-              <div className={styles.team}>
-                <div>{home}</div>
-                <div>
-                  {data.home.teamsheet
-                    .sort((a, b) => a.position - b.position)
-                    .map((player, key) => {
-                      return <Player player={player} key={key} />;
-                    })}
+          {!data?.referees && "loading..."}
+          {data?.referees && (
+            <>
+              <h2 id="transition-modal-title" className={styles.title}>
+                Teams players
+              </h2>
+              <div className={styles.teams}>
+                <div className={styles.team}>
+                  <div className={styles.name}>{home}</div>
+                  <Players players={data.home.teamsheet} />
+                </div>
+                <div className={styles.team}>
+                  <div className={styles.name}>{away}</div>
+                  <Players players={data.away.teamsheet} />
                 </div>
               </div>
-              <div className={styles.team}>
-                <div>{away}</div>
-                <div>
-                  {data.away.teamsheet.map((player, key) => {
-                    return <Player player={player} key={key} />;
-                  })}
-                </div>
-              </div>
-            </div>
+
+              <h2 className={styles.title}>Referees</h2>
+              <Referees referees={data.referees}/>
+            </>
           )}
         </div>
       </Fade>
@@ -58,13 +52,37 @@ const MatchModal = (props: MatchModalType) => {
   );
 };
 
-const Player = (props: { player: { name: string; position: number } }) => {
-  const { name, position } = props.player;
+const Players = (props: { players: any }) => {
+  const { players } = props;
 
   return (
     <div>
-      {position} - {name}
+      {players
+        .sort((a, b) => a.position - b.position)
+        .map((player, key) => {
+          const { name, position } = player;
+          return (
+            <div key={key} className={styles.line}>
+              <div className={styles.position}>{position}</div>{" "}
+              <div>{name}</div>
+            </div>
+          );
+        })}
     </div>
   );
 };
+
+const Referees = (props: { referees: any }) => {
+  const { referees } = props;
+
+  return <div>
+    {referees.map((referee, key) => {
+      const { name , role} = referee;
+
+      return <div key={key} className={styles.line}>
+        {name} ({ role })
+      </div>
+    })}
+  </div>
+}
 export default memo(MatchModal);
