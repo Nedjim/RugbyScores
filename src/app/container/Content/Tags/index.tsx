@@ -51,11 +51,13 @@ const Tags = () => {
   );
 };
 
-const Tag = (props: {
+type TagType = {
   label: string;
   isSelected: boolean;
   onClick: () => void;
-}) => {
+}
+
+const Tag = memo(function Tag(props: TagType) {
   const { label, isSelected, onClick } = props;
 
   return (
@@ -65,6 +67,6 @@ const Tag = (props: {
       onClick={onClick}
     />
   );
-};
+});
 
 export default memo(Tags);

@@ -1,18 +1,21 @@
 
+import { memo } from 'react';
 import styles from './index.module.scss';
 
 type ActionButtonType = {
   disabled: boolean;
-  label: string;
+  type: string;
   onClick: () => void;
 };
 
-export const ActionButton = (props: ActionButtonType) => {
-  const { label, onClick } = props;
+const ActionButton = (props: ActionButtonType) => {
+  const { type, onClick, disabled} = props;
 
   return (
     <button onClick={onClick} className={styles.actionbutton}>
-      {label}
+      {disabled ? 'hide' : 'show'} {type}
     </button>
   );
 };
+
+export default memo(ActionButton)

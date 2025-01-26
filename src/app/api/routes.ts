@@ -20,7 +20,7 @@ export async function getScoresByDate(date: Dayjs) {
     headers: HEADERS,
   };
 
-  const response = await axios.request<ScoresByDateResponse>(options);
+  //const response = await axios.request<ScoresByDateResponse>(options);
 
   return mock.results; //response.data.results;
 }
@@ -34,5 +34,5 @@ export async function getMatch(id: number) {
 
   const response = await axios.request<MatchResponse>(options);
 
-  return response.data.results;
+  // return response.data.results;
 }

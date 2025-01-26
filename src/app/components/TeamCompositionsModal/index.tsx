@@ -4,7 +4,7 @@ import styles from "./index.module.scss";
 import { useMatch } from "@/app/api/hooks";
 import { Player, Referee } from "@/app/api/types";
 
-type MatchModalType = {
+type TeamCompositionsModalType = {
   isOpen: boolean;
   id: number;
   away: string;
@@ -12,7 +12,7 @@ type MatchModalType = {
   onClose: () => void;
 };
 
-const MatchModal = (props: MatchModalType) => {
+const TeamCompositionsModal = (props: TeamCompositionsModalType) => {
   const { isOpen, onClose, id, away, home } = props;
   const { data } = useMatch(id);
 
@@ -44,7 +44,7 @@ const MatchModal = (props: MatchModalType) => {
               </div>
 
               <h2 className={styles.title}>Referees</h2>
-              <Referees referees={data.referees}/>
+              <Referees referees={data.referees} />
             </>
           )}
         </div>
@@ -76,15 +76,19 @@ const Players = (props: { players: Player[] }) => {
 const Referees = (props: { referees: Referee[] }) => {
   const { referees } = props;
 
-  return <div>
-    {referees.map((referee, key) => {
-      const { name , role} = referee;
+  return (
+    <div>
+      {referees.map((referee, key) => {
+        const { name, role } = referee;
 
-      return <div key={key} className={styles.line}>
-        {name} ({ role })
-      </div>
-    })}
-  </div>
-}
+        return (
+          <div key={key} className={styles.line}>
+            {name} ({role})
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
-export default memo(MatchModal);
+export default memo(TeamCompositionsModal);
