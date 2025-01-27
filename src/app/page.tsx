@@ -1,7 +1,7 @@
 "use client";
 import Header from "./container/Header";
 import Content from "./container/Content";
-import dayjs from "dayjs";
+import { Dayjs } from "dayjs";
 import { AppContext } from "./context";
 import { useState } from "react";
 import Aside from "./container/Aside";
@@ -9,7 +9,7 @@ import styles from "./index.module.scss";
 import { MatchStatus } from "./api/types";
 
 export default function Home() {
-  const [date, setDate] = useState(dayjs());
+  const [date, setDate] = useState<Dayjs | null>(null);
   const [teamFilter, setTeamFilter] = useState<string | null>(null);
   const [statusFilter, setStatus] = useState<MatchStatus[] | null>(null);
   const [competitionFilter, setCompetitionFilter] = useState<string | null>(

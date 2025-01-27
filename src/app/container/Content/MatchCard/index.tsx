@@ -65,7 +65,7 @@ const MatchCard = (props: MatchCardType) => {
           />
           <ActionButton
             type="compositions"
-            disabled={!shouldDisplayCompositions}
+            disabled={shouldDisplayCompositions}
             onClick={handleShowCompositions}
           />
         </div>

@@ -12,7 +12,10 @@ const MatchList = () => {
   return (
     <>
       {isLoading && <div className={styles.loading}>Loading ...</div>}
-      {!isLoading && error && <div>Error </div>}
+      {!isLoading && error && <div className={styles.error}>Error </div>}
+      {!isLoading && !error && !data && (
+        <div className={styles.empty}>Please, select a date...</div>
+      )}
       {!isLoading && !error && data && <Matchs data={data} />}
     </>
   );

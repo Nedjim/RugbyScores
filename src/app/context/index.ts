@@ -3,8 +3,8 @@ import { createContext } from "react";
 import { MatchStatus } from "../api/types";
 
 type DefaultContextValue = {
-  date?: Dayjs;
-  setDate: (date: Dayjs) => void;
+  date: Dayjs | null;
+  setDate: (date: Dayjs | null) => void;
   teamFilter: string | null;
   setTeamFilter: (value: string) => void;
   statusFilter?: MatchStatus[] | null;
@@ -15,7 +15,7 @@ type DefaultContextValue = {
 };
 
 const defaultValue: DefaultContextValue = {
-  date: undefined,
+  date: null,
   setDate: () => {},
   teamFilter: null,
   setTeamFilter: () => {},
