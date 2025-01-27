@@ -8,7 +8,7 @@ const SWR_OPTIONS = {
   revalidateOnReconnect: false,
 };
 
-export const useScoresByDate = (date?: Dayjs) => {
+export const useScoresByDate = (date: Dayjs | null) => {
   return useSWR(
     date,
     date ? (date: Dayjs) => getScoresByDate(date) : null,

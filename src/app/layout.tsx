@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "normalize.css";
 import styles from "./index.module.scss";
 
@@ -14,7 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={styles.body}>{children}</body>
+      <body className={styles.body}>
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
