@@ -12,7 +12,6 @@ type DefaultContextValue = {
   competitionFilter: string | null;
   setCompetitionFilter: (value: string) => void;
   resetFilters: () => void;
-
 };
 
 const defaultValue: DefaultContextValue = {
@@ -24,7 +23,7 @@ const defaultValue: DefaultContextValue = {
   setStatus: () => {},
   competitionFilter: null,
   setCompetitionFilter: () => {},
-  resetFilters: () => {}
+  resetFilters: () => {},
 };
 
 export const AppContext = createContext(defaultValue);

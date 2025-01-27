@@ -1,10 +1,10 @@
-import {faHourglassEnd} from "@fortawesome/free-solid-svg-icons/faHourglassEnd";
-import {faHourglassStart} from "@fortawesome/free-solid-svg-icons/faHourglassStart";
-import {faHourglassHalf} from "@fortawesome/free-solid-svg-icons/faHourglassHalf";
-import {faHourglass} from "@fortawesome/free-solid-svg-icons/faHourglass";
+import { faHourglassEnd } from "@fortawesome/free-solid-svg-icons/faHourglassEnd";
+import { faHourglassStart } from "@fortawesome/free-solid-svg-icons/faHourglassStart";
+import { faHourglassHalf } from "@fortawesome/free-solid-svg-icons/faHourglassHalf";
+import { faHourglass } from "@fortawesome/free-solid-svg-icons/faHourglass";
 import { MatchStatus } from "../api/types";
 
-export const DATE_FORMAT = 'DD/MM/YYYY';
+export const DATE_FORMAT = "DD/MM/YYYY";
 
 export const getIconsByStatus = (status: MatchStatus) => {
   switch (status) {
@@ -13,7 +13,7 @@ export const getIconsByStatus = (status: MatchStatus) => {
     case "First Half":
       return faHourglassStart;
     case "Second Half":
-      return faHourglassHalf
+      return faHourglassHalf;
     default:
       return faHourglass;
   }

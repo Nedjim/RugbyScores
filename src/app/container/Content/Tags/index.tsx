@@ -4,30 +4,30 @@ import { Chip } from "@mui/material";
 import { AppContext } from "@/app/context";
 import { MatchStatus } from "@/app/api/types";
 
-type Tag = "finish" | "in_progress" | "not_started" | "all";;
+type Tag = "finish" | "in_progress" | "not_started" | "all";
 
 const TAG_LIST: {
   id: Tag;
   label: string;
   filter: MatchStatus[];
 }[] = [
-  { 'id': "all", 'label': "All", 'filter': [] },
-  { 'id': "finish", 'label': "Finish", 'filter': ["Result"] },
+  { id: "all", label: "All", filter: [] },
+  { id: "finish", label: "Finish", filter: ["Result"] },
   {
-    'id': "in_progress",
-    'label': "In progress",
-    'filter': ["First Half", "Half Time", "Second Half", "Full Time"],
+    id: "in_progress",
+    label: "In progress",
+    filter: ["First Half", "Half Time", "Second Half", "Full Time"],
   },
   {
-    'id': "not_started",
-    'label': "Not started",
-    'filter': ["Postponed", "Cancelled"],
+    id: "not_started",
+    label: "Not started",
+    filter: ["Postponed", "Cancelled"],
   },
 ];
 
 const Tags = () => {
   const { setStatus } = useContext(AppContext);
-  const [tag, setTag] = useState<Tag>('all');
+  const [tag, setTag] = useState<Tag>("all");
 
   return (
     <div className={styles.tags}>
@@ -55,7 +55,7 @@ type TagType = {
   label: string;
   isSelected: boolean;
   onClick: () => void;
-}
+};
 
 const Tag = memo(function Tag(props: TagType) {
   const { label, isSelected, onClick } = props;

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "tsc": "tsc"
+    "test": "yarn lint & yarn tsc & prettier --check"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -40,6 +40,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
+    "prettier": "3.4.2",
     "sass": "^1.83.1",
     "typescript": "^5"
   }

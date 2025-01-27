@@ -3,7 +3,7 @@ import Header from "./container/Header";
 import Content from "./container/Content";
 import dayjs from "dayjs";
 import { AppContext } from "./context";
-import {useState } from "react";
+import { useState } from "react";
 import Aside from "./container/Aside";
 import styles from "./index.module.scss";
 import { MatchStatus } from "./api/types";
@@ -13,14 +13,14 @@ export default function Home() {
   const [teamFilter, setTeamFilter] = useState<string | null>(null);
   const [statusFilter, setStatus] = useState<MatchStatus[] | null>(null);
   const [competitionFilter, setCompetitionFilter] = useState<string | null>(
-    null
+    null,
   );
 
   const resetFilters = () => {
     setTeamFilter(null);
     setStatus(null);
     setCompetitionFilter(null);
-  }
+  };
 
   return (
     <>
@@ -35,12 +35,12 @@ export default function Home() {
           setStatus,
           competitionFilter,
           setCompetitionFilter,
-          resetFilters
+          resetFilters,
         }}
       >
         <div className={styles.page}>
           <Aside />
-            <Content />
+          <Content />
         </div>
       </AppContext.Provider>
     </>

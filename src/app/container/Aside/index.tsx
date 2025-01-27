@@ -29,9 +29,7 @@ function TeamFilter() {
     }
   };
 
-  return (
-    <FilterInput label="Team" onChange={handleChange} />
-  );
+  return <FilterInput label="Team" onChange={handleChange} />;
 }
 
 function CompetiitonFilter() {
@@ -49,12 +47,7 @@ function CompetiitonFilter() {
     }
   };
 
-  return (
-    <FilterInput
-      label="Competition"
-      onChange={handleChange}
-    />
-  );
+  return <FilterInput label="Competition" onChange={handleChange} />;
 }
 
 export default memo(Aside);

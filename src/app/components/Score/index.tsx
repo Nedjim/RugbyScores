@@ -13,12 +13,9 @@ const Score = (props: ScoreType) => {
 
   return (
     <span
-      className={clsx(
-        styles.score,
-        success && !isHidden && styles.success,
-      )}
+      className={clsx(styles.score, success && !isHidden && styles.success)}
     >
-      {isHidden ? 'x' : value}
+      {isHidden ? "x" : value}
     </span>
   );
 };

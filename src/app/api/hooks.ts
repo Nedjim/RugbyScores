@@ -12,10 +12,10 @@ export const useScoresByDate = (date?: Dayjs) => {
   return useSWR(
     date,
     date ? (date: Dayjs) => getScoresByDate(date) : null,
-    SWR_OPTIONS
+    SWR_OPTIONS,
   );
 };
 
 export const useMatch = (id: number) => {
-  return useSWR(`match-${id}`, () =>  getMatch(id), SWR_OPTIONS);
+  return useSWR(`match-${id}`, () => getMatch(id), SWR_OPTIONS);
 };

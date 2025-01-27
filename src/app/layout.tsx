@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import 'normalize.css';
+import "normalize.css";
 import styles from "./index.module.scss";
-
 
 export const metadata: Metadata = {
   title: "Rugby Scores",
@@ -15,10 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={styles.body}>
-        {children}
-      </body>
+      <body className={styles.body}>{children}</body>
     </html>
   );
 }
-

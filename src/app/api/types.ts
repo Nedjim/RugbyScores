@@ -48,7 +48,7 @@ type GetMatchMeta = {
       home_or_away: "home" | "away";
     };
   };
-}
+};
 
 export type MatchStatus =
   | "Not Started"

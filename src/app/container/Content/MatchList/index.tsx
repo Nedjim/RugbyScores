@@ -20,7 +20,8 @@ const MatchList = () => {
 
 const Matchs = (props: { data: Match[] }) => {
   const { data } = props;
-  const { teamFilter, competitionFilter, statusFilter } = useContext(AppContext);
+  const { teamFilter, competitionFilter, statusFilter } =
+    useContext(AppContext);
 
   const filteredData = useMemo(() => {
     if (teamFilter || competitionFilter || statusFilter) {
@@ -42,9 +43,9 @@ const Matchs = (props: { data: Match[] }) => {
         }
 
         if (statusFilter?.length) {
-          tmpStatus =  statusFilter.includes(match.status);
+          tmpStatus = statusFilter.includes(match.status);
         }
-      
+
         return tmpTeam && tmpComp && tmpStatus;
       });
     }

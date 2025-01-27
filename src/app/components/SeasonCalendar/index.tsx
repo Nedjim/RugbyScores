@@ -8,8 +8,8 @@ import { DATE_FORMAT } from "@/app/helpers";
 import { AppContext } from "@/app/context";
 
 const SeasonCalendar = () => {
-  const {date, setDate, resetFilters} = useContext(AppContext);
-  
+  const { date, setDate, resetFilters } = useContext(AppContext);
+
   return (
     <div className={styles.calendarWrapper}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -19,7 +19,7 @@ const SeasonCalendar = () => {
           value={date}
           onChange={(value) => {
             if (value) {
-              setDate(value)
+              setDate(value);
               resetFilters();
             }
           }}
