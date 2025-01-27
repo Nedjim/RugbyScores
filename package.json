@@ -7,7 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "yarn lint & yarn tsc & prettier --check"
+    "test": "yarn lint & yarn tsc & yarn prettier . --check",
+    "prettier-write": "yarn prettier . --write",
+    "lint-fix": "yarn lint --fix",
+    "clean-code": "yarn prettier-write & yarn lint-fix",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -40,6 +47,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
     "prettier": "3.4.2",
     "sass": "^1.83.1",
     "typescript": "^5"
