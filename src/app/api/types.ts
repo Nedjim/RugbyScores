@@ -12,7 +12,7 @@ type ScoresByDateMeta = {
     away: string;
     home_id: string;
     away_id: string;
-    status: string;
+    status: MatchStatus;
     venue: string;
     home_score: string;
     away_score: string;
@@ -64,7 +64,7 @@ export type Match = {
   id: number;
   comp_id: number;
   comp_name: string;
-  season: number;
+  season: string;
   date: string;
   game_week: number;
   home: string;
@@ -114,7 +114,7 @@ export type MatchDetails = {
   id: number;
   comp_id: number;
   comp_name: string;
-  season: number;
+  season: string;
   status: MatchStatus;
   venue: number;
   game_week: number;

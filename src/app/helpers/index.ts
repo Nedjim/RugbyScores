@@ -3,6 +3,7 @@ import { faHourglassStart } from "@fortawesome/free-solid-svg-icons/faHourglassS
 import { faHourglassHalf } from "@fortawesome/free-solid-svg-icons/faHourglassHalf";
 import { faHourglass } from "@fortawesome/free-solid-svg-icons/faHourglass";
 import { MatchStatus } from "../api/types";
+import { Roboto } from "next/font/google";
 
 export const DATE_FORMAT = "DD/MM/YYYY";
 
@@ -18,3 +19,9 @@ export const getIconsByStatus = (status: MatchStatus) => {
       return faHourglass;
   }
 };
+
+export const roboto = Roboto({
+  weight: "300",
+  display: "swap",
+  subsets: ["latin"],
+});

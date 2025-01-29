@@ -2,9 +2,9 @@ import { memo } from "react";
 import styles from "./index.module.scss";
 
 type ActionButtonType = {
-  disabled: boolean;
   type: string;
   onClick: () => void;
+  disabled?: boolean;
 };
 
 const ActionButton = (props: ActionButtonType) => {
@@ -12,7 +12,7 @@ const ActionButton = (props: ActionButtonType) => {
 
   return (
     <button onClick={onClick} className={styles.actionbutton}>
-      {disabled ? "hide" : "show"} {type}
+      {disabled && "hide"} {type}
     </button>
   );
 };

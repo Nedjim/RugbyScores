@@ -5,9 +5,9 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons/faLocationDot";
 import { getIconsByStatus } from "@/app/helpers";
 import { Match } from "@/app/api/types";
 import Score from "@/app/components/Score";
-import styles from "./index.module.scss";
 import ActionButton from "@/app/components/ActionButton";
-import TeamCompositionsModal from "@/app/components/TeamCompositionsModal";
+import GameModal from "../GameModal";
+import styles from "./index.module.scss";
 
 type MatchCardType = { match: Match };
 
@@ -63,20 +63,14 @@ const MatchCard = (props: MatchCardType) => {
             disabled={shouldDisplayScores}
             onClick={handleShowResults}
           />
-          <ActionButton
-            type="compositions"
-            disabled={shouldDisplayCompositions}
-            onClick={handleShowCompositions}
-          />
+          <ActionButton type="compositions" onClick={handleShowCompositions} />
         </div>
       </div>
       <MatchCardFooter venue={venue} />
       {shouldDisplayCompositions && (
-        <TeamCompositionsModal
+        <GameModal
           isOpen={shouldDisplayCompositions}
           id={id}
-          away={away}
-          home={home}
           onClose={handleCloseCompositions}
         />
       )}
