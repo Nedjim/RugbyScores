@@ -1,0 +1,18 @@
+@import "normalize.css/normalize.css";
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+
+  @media only screen and (min-width: 640px) {
+    flex-direction: row;
+  }
+}
