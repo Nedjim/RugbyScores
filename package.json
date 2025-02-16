@@ -7,10 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "yarn lint & yarn tsc & yarn prettier . --check",
-    "prettier-write": "yarn prettier . --write",
-    "lint-fix": "yarn lint --fix",
-    "clean-code": "yarn prettier-write & yarn lint-fix",
+    "test": "pnpm lint & pnpm tsc & pnpm prettier . --check",
+    "prettier-write": "pnpm prettier . --write",
+    "lint-fix": "pnpm lint --fix",
+    "clean-code": "pnpm prettier-write & pnpm lint-fix",
     "prepare": "husky"
   },
   "lint-staged": {

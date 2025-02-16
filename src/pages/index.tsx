@@ -4,7 +4,7 @@ import { Dayjs } from "dayjs";
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MatchStatus } from "@/app/types";
-import { AppContext } from "./context";
+import AppContext from "./context";
 import Header from "@/container/Header";
 import Aside from "@/container/Aside";
 import Content from "@/container/Content";

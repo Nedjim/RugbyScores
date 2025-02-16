@@ -2,7 +2,7 @@ import { memo, useContext, useMemo } from "react";
 import { Match } from "@/app/types";
 import { useScoresByDate } from "@/app/hooks";
 import MatchCard from "../MatchCard";
-import { AppContext } from "@/pages/context";
+import AppContext from "@/pages/context";
 
 import styles from "./index.module.scss";
 

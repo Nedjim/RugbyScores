@@ -3,7 +3,7 @@ import { memo, useContext } from "react";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-import { AppContext } from "@/pages/context";
+import AppContext from "@/pages/context";
 
 import styles from "./index.module.scss";
 

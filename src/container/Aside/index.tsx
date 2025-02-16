@@ -1,7 +1,7 @@
 import { memo, useContext } from "react";
 import SeasonCalendar from "@/components/SeasonCalendar";
 import FilterInput from "@/components/FilterInput";
-import { AppContext } from "@/pages/context";
+import AppContext from "@/pages/context";
 import styles from "./index.module.scss";
 
 const Aside = () => {

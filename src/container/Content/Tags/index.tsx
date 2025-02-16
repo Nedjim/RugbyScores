@@ -2,7 +2,7 @@ import { memo, useContext, useState } from "react";
 import styles from "./index.module.scss";
 import { Chip } from "@mui/material";
 import { MatchStatus } from "@/app/types";
-import { AppContext } from "@/pages/context";
+import AppContext from "@/pages/context";
 
 type Tag = "finish" | "in_progress" | "not_started" | "all";
 

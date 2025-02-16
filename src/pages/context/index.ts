@@ -1,6 +1,6 @@
 import { Dayjs } from "dayjs";
+import { MatchStatus } from "@/app/types";
 import { createContext } from "react";
-import { MatchStatus } from "../api/types";
 
 type DefaultContextValue = {
   date: Dayjs | null;
@@ -26,4 +26,6 @@ const defaultValue: DefaultContextValue = {
   resetFilters: () => {},
 };
 
-export const AppContext = createContext(defaultValue);
+const AppContext = createContext(defaultValue);
+
+export default AppContext;
