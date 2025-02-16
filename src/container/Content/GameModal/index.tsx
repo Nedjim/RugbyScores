@@ -19,7 +19,7 @@ export type ContentType = "players" | "substitutes" | "referees";
 
 const GameModal = (props: GameModalType) => {
   const { isOpen, onClose, id } = props;
-  const { data } = useMatch(id);
+  const { data, isLoading, status, isSuccess } = useMatch(id);
   const [currentContent, setContent] = useState<ContentType>("players");
 
   return (
@@ -32,8 +32,10 @@ const GameModal = (props: GameModalType) => {
     >
       <Fade in={isOpen}>
         <div className={`${styles.modalContent} ${roboto.className}`}>
-          {!data && <div className={styles.loading}>Loading...</div>}
-          {data && (
+          {isLoading && status === "loading" && (
+            <div className={styles.loading}>Loading...</div>
+          )}
+          {isSuccess && status === "success" && data && (
             <div>
               <Navigation
                 currentContent={currentContent}

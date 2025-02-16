@@ -2,21 +2,26 @@ import { memo, useContext, useMemo } from "react";
 import { Match } from "@/app/types";
 import { useScoresByDate } from "@/app/hooks";
 import MatchCard from "../MatchCard";
-import styles from "./index.module.scss";
 import { AppContext } from "@/pages/context";
+
+import styles from "./index.module.scss";
 
 const MatchList = () => {
   const { date } = useContext(AppContext);
-  const { data, error, isLoading } = useScoresByDate(date);
+  const { data, status, isError, isLoading, isSuccess } = useScoresByDate(date);
 
   return (
     <>
-      {isLoading && <div className={styles.loading}>Loading ...</div>}
-      {!isLoading && error && <div className={styles.error}>Error </div>}
-      {!isLoading && !error && !data && (
-        <div className={styles.empty}>Please, select a date...</div>
+      {!date && <div className={styles.empty}>Please, select a date...</div>}
+      {date && isLoading && status === "loading" && (
+        <div className={styles.loading}>Loading ...</div>
       )}
-      {!isLoading && !error && data && <Matchs data={data} />}
+      {date && isError && status === "error" && (
+        <div className={styles.error}>An error occured, please retry.</div>
+      )}
+      {date && isSuccess && status === "success" && data && (
+        <Matchs data={data} />
+      )}
     </>
   );
 };
