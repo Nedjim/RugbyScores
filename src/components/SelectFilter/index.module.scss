@@ -1,0 +1,14 @@
+.selectFilter {
+  display: flex;
+  gap: 4px;
+
+  .clearButton {
+    display: none;
+  }
+
+  &:hover {
+    .clearButton.isAvailable {
+      display: block;
+    }
+  }
+}

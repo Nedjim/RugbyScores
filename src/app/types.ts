@@ -1,3 +1,5 @@
+import { UseQueryResult } from "@tanstack/react-query";
+
 type ScoresByDateMeta = {
   title: string;
   description: string;
@@ -174,3 +176,8 @@ export type MatchResponse = {
     events: MatchEvents;
   };
 };
+
+export type ScoresByDateHookResponse = UseQueryResult<
+  Match[] | null | undefined,
+  unknown
+>;

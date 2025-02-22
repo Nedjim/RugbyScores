@@ -1,8 +1,10 @@
-import { memo, useContext, useState } from "react";
-import styles from "./index.module.scss";
+import { memo, useState } from "react";
 import { Chip } from "@mui/material";
 import { MatchStatus } from "@/app/types";
-import AppContext from "@/pages/context";
+import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
+
+import styles from "./index.module.scss";
 
 type Tag = "finish" | "in_progress" | "not_started" | "all";
 
@@ -26,7 +28,8 @@ const TAG_LIST: {
 ];
 
 const Tags = () => {
-  const { setStatus } = useContext(AppContext);
+  const router = useRouter();
+  const pathname = usePathname();
   const [tag, setTag] = useState<Tag>("all");
 
   return (
@@ -40,7 +43,7 @@ const Tags = () => {
             isSelected={id === tag}
             onClick={() => {
               if (filter) {
-                setStatus(filter);
+                router.push({ pathname, query: { status: filter } });
                 setTag(id);
               }
             }}

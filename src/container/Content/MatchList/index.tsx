@@ -1,37 +1,21 @@
-import { memo, useContext, useMemo } from "react";
-import { Match } from "@/app/types";
-import { useScoresByDate } from "@/app/hooks";
+import { memo, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
+import { Match, ScoresByDateHookResponse } from "@/app/types";
 import MatchCard from "../MatchCard";
-import AppContext from "@/pages/context";
 
 import styles from "./index.module.scss";
-
-const MatchList = () => {
-  const { date } = useContext(AppContext);
-  const { data, status, isError, isLoading, isSuccess } = useScoresByDate(date);
-
-  return (
-    <>
-      {!date && <div className={styles.empty}>Please, select a date...</div>}
-      {date && isLoading && status === "loading" && (
-        <div className={styles.loading}>Loading ...</div>
-      )}
-      {date && isError && status === "error" && (
-        <div className={styles.error}>An error occured, please retry.</div>
-      )}
-      {date && isSuccess && status === "success" && data && (
-        <Matchs data={data} />
-      )}
-    </>
-  );
-};
+import { getQueryStringFilter } from "@/utils";
 
 const Matchs = (props: { data: Match[] }) => {
   const { data } = props;
-  const { teamFilter, competitionFilter, statusFilter } =
-    useContext(AppContext);
+  const searchParams = useSearchParams();
 
   const filteredData = useMemo(() => {
+    const params = new URLSearchParams(searchParams?.toString());
+    const competitionFilter = getQueryStringFilter(params, "competition");
+    const teamFilter = getQueryStringFilter(params, "team");
+    const statusFilter = getQueryStringFilter(params, "status");
+
     if (teamFilter || competitionFilter || statusFilter) {
       return data.filter((match) => {
         let tmpTeam = true;
@@ -40,14 +24,11 @@ const Matchs = (props: { data: Match[] }) => {
 
         if (teamFilter) {
           tmpTeam =
-            match.home.toLowerCase().includes(teamFilter.toLowerCase()) ||
-            match.away.toLowerCase().includes(teamFilter.toLowerCase());
+            match.home.includes(teamFilter) || match.away.includes(teamFilter);
         }
 
         if (competitionFilter) {
-          tmpComp = match.comp_name
-            .toLowerCase()
-            .includes(competitionFilter.toLowerCase());
+          tmpComp = match.comp_name.includes(competitionFilter);
         }
 
         if (statusFilter?.length) {
@@ -58,7 +39,7 @@ const Matchs = (props: { data: Match[] }) => {
       });
     }
     return data;
-  }, [teamFilter, competitionFilter, statusFilter, data]);
+  }, [searchParams, data]);
 
   return (
     <div className={styles.matchList}>
@@ -71,6 +52,25 @@ const Matchs = (props: { data: Match[] }) => {
         return <MatchCard key={key} match={match} />;
       })}
     </div>
+  );
+};
+
+const MatchList = (props: { data: ScoresByDateHookResponse }) => {
+  const { data } = props;
+  const { data: matchsData, status, isLoading, isSuccess } = data;
+
+  return (
+    <>
+      {!matchsData && (
+        <div className={styles.empty}>Please, select a date...</div>
+      )}
+      {matchsData && isLoading && status === "loading" && (
+        <div className={styles.loading}>Loading ...</div>
+      )}
+      {matchsData && isSuccess && status === "success" && data && (
+        <Matchs data={matchsData} />
+      )}
+    </>
   );
 };
 

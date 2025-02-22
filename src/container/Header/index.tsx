@@ -1,9 +1,11 @@
 import { memo } from "react";
+import { smooch } from "@/utils";
+import clsx from "clsx";
 import styles from "./index.module.scss";
 
 const Header = () => {
   return (
-    <header className={styles.header}>
+    <header className={clsx(styles.header, smooch.className)}>
       <div className={styles.left}>
         <h1 className={styles.title}>Rugby Scores</h1>
         <span className={styles.description}>
