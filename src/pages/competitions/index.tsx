@@ -4,11 +4,11 @@ import { memo, useMemo } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useSearchParams } from "next/navigation";
-import { getQueryDateFilter } from "@/utils";
-import { useScoresByDate } from "@/app/hooks";
-import Aside from "@/container/Aside";
-import Content from "@/container/Content";
-import Header from "@/container/Header";
+import { getQueryDateFilter } from "@/app/utils";
+import { useScoresByDate } from "@/app/libs/hooks";
+import Header from "@/app/container/Header";
+import Aside from "@/app/container/Aside";
+import Content from "@/app/container/Content";
 import styles from "./index.module.scss";
 
 const queryClient = new QueryClient({
@@ -32,7 +32,7 @@ const CompetitionsPageWrapper = () => {
   );
 };
 
-const CompetitionsPageContent = () => {
+const CompetitionsPageContent = memo(function CompetitionsPageContent() {
   const searchParams = useSearchParams();
 
   const date = useMemo(() => {
@@ -53,5 +53,6 @@ const CompetitionsPageContent = () => {
       </div>
     </div>
   );
-};
+});
+
 export default memo(CompetitionsPageWrapper);

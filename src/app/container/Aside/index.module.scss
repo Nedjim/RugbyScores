@@ -1,0 +1,61 @@
+.aside {
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+    rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+
+  .showFiltersPanel {
+    display: flex;
+    justify-content: space-between;
+    color: #0a6d63;
+    margin: 16px;
+    z-index: 140;
+
+    @media only screen and (min-width: 640px) {
+      .clearButton {
+        display: none;
+      }
+
+      &.expended {
+        .clearButton {
+          display: block;
+        }
+      }
+    }
+
+    span {
+      margin-left: 14px;
+      font-size: 14px;
+      @media only screen and (min-width: 640px) {
+        display: none;
+      }
+    }
+  }
+
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    background: white;
+    z-index: 100;
+    width: -webkit-fill-available;
+    box-shadow:
+      rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+      rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+
+    h3 {
+      font-weight: 300;
+      margin: 0;
+      padding-bottom: 8px;
+    }
+
+    @media only screen and (min-width: 640px) {
+      padding: 24px 24px 0 24px;
+      flex: 1;
+      width: 230px;
+      background: inherit;
+    }
+  }
+}
