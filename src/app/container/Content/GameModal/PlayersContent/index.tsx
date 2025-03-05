@@ -9,6 +9,14 @@ const PlayersContent = (props: { data: MatchResponse["results"] }) => {
   const localTeam = data.home.teamsheet;
   const visitorTeam = data.away.teamsheet;
 
+  if (!localTeam.length && !visitorTeam.length) {
+    return (
+      <div className={styles.empty}>
+        Sorry, the composition is not available...
+      </div>
+    );
+  }
+
   return (
     <div className={styles.ground}>
       <div>

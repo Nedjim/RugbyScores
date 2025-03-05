@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Referee } from "@/app/types";
+import { Referee } from "@/app/libs/types";
 import styles from "../index.module.scss";
 
 const Referees = (props: { referees: Referee[] }) => {

@@ -1,8 +1,7 @@
-import { Button } from "@mui/material";
 import { memo } from "react";
-
+import { Button } from "@mui/material";
+import { ContentType } from "@/app/container/Content/GameModal";
 import styles from "./index.module.scss";
-import { ContentType } from "@/container/Content/GameModal";
 
 const ItemMenu = (props: {
   onClick: () => void;

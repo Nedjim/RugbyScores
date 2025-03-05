@@ -1,7 +1,6 @@
 import { memo } from "react";
-import { Player } from "@/app/types";
+import { Player } from "@/app/libs/types";
 import GroundPlayer from "../Player";
-
 import styles from "../index.module.scss";
 
 const Subtitutes = (props: { teamsheet: Player[]; teamName: string }) => {
