@@ -17,7 +17,7 @@ $background: #03a696;
   .left {
     display: flex;
     flex-direction: column;
-    padding: 0 40px;
+    padding: 0 24px;
 
     .title {
       margin: 0;
@@ -27,10 +27,15 @@ $background: #03a696;
   .menu {
     display: flex;
     font-size: 18px;
-    .item {
+    a {
       border-left: 1px solid #04bf9d;
       padding: 16px;
       cursor: pointer;
+      text-decoration: none;
+      color: white;
+      &.active {
+        color: aquamarine;
+      }
     }
   }
 

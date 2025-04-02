@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Header from "../Header";
+import { roboto } from "@/app/utils";
 import styles from "./index.module.scss";
 
 export const metadata: Metadata = {
@@ -7,17 +9,12 @@ export const metadata: Metadata = {
   description: "Scores",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={styles.body}>
-        {children}
-        <SpeedInsights />
-      </body>
-    </html>
+    <div className={styles.layout}>
+      <Header />
+      <main className={`${styles.main} ${roboto.className}`}>{children}</main>
+      <SpeedInsights />
+    </div>
   );
 }

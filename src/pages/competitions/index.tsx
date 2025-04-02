@@ -6,7 +6,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useSearchParams } from "next/navigation";
 import { getQueryDateFilter } from "@/app/utils";
 import { useScoresByDate } from "@/app/libs/hooks";
-import Header from "@/app/container/Header";
 import Aside from "@/app/container/Aside";
 import Content from "@/app/container/Content";
 import styles from "./index.module.scss";
@@ -46,7 +45,6 @@ const CompetitionsPageContent = memo(function CompetitionsPageContent() {
 
   return (
     <div className={styles.pageWrapper}>
-      <Header />
       <div className={styles.main}>
         <Aside data={data} />
         <Content data={data} />
