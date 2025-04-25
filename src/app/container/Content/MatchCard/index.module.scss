@@ -38,6 +38,15 @@
         font-size: 14px;
       }
     }
+
+    .right {
+      display: flex;
+      gap: 8px;
+
+      svg {
+        color: #05a596;
+      }
+    }
   }
 
   .body {

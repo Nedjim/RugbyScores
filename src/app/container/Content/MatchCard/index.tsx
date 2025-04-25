@@ -1,12 +1,14 @@
 "use client";
+import dayjs from "dayjs";
 import { memo, useCallback, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons/faLocationDot";
-import { getIconsByStatus } from "@/app/utils";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons/faCircleCheck";
 import { Match } from "@/app/libs/types";
 import Score from "@/app/components/Score";
 import ActionButton from "@/app/components/ActionButton";
 import GameModal from "../GameModal";
+
 import styles from "./index.module.scss";
 
 const MatchCard = (props: { match: Match }) => {
@@ -78,7 +80,8 @@ const MatchCard = (props: { match: Match }) => {
 
 const MatchCardHeader = memo(function MatchCardHeader(props: { match: Match }) {
   const { match } = props;
-  const { comp_name: competionName, season, status } = match;
+  const { comp_name: competionName, season, status, date } = match;
+  const isScoreAvailable = status === "Result";
 
   return (
     <div className={styles.header}>
@@ -86,7 +89,10 @@ const MatchCardHeader = memo(function MatchCardHeader(props: { match: Match }) {
         <div className={styles.compName}>{competionName}</div>
         <div className={styles.season}>{season}</div>
       </div>
-      <FontAwesomeIcon icon={getIconsByStatus(status)} />
+      <div className={styles.right}>
+        <span>{dayjs(date).format("HH:mm")}</span>
+        {isScoreAvailable && <FontAwesomeIcon icon={faCircleCheck} />}
+      </div>
     </div>
   );
 });

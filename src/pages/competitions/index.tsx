@@ -35,10 +35,16 @@ const CompetitionsPageContent = memo(function CompetitionsPageContent() {
   const searchParams = useSearchParams();
 
   const date = useMemo(() => {
-    const params = new URLSearchParams(searchParams?.toString());
+    const dateQuery = searchParams?.toString();
+
+    if (!dateQuery?.length) {
+      return undefined;
+    }
+
+    const params = new URLSearchParams(dateQuery);
     const dateFilter = getQueryDateFilter(params);
 
-    return dateFilter || null;
+    return dateFilter;
   }, [searchParams]);
 
   const data = useScoresByDate(date);

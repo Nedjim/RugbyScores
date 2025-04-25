@@ -1,6 +1,7 @@
 import { Match } from "../libs/types";
 import { getQueryStringFilter, getStatusFilter } from ".";
 import { TAG_LIST } from "../container/Aside/StatusFilter";
+import dayjs from "dayjs";
 
 export const matchsFilter = (props: {
   data: Match[];
@@ -12,7 +13,24 @@ export const matchsFilter = (props: {
   if (searchParams) {
     return data.filter((match) => isMatchAvailable({ match, params }));
   }
-  return data;
+
+  return sortMathsByDate(data);
+};
+
+const sortMathsByDate = (data: Match[]) => {
+  return data.sort((a, b) => {
+    const isBefore = dayjs(a.date).isBefore(dayjs(b.date));
+    const isAfter = dayjs(a.date).isAfter(dayjs(b.date));
+
+    if (isBefore) {
+      return -1;
+    }
+    if (!isAfter) {
+      return 1;
+    }
+
+    return 0;
+  });
 };
 
 const isMatchAvailable = (props: { match: Match; params: URLSearchParams }) => {

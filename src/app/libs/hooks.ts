@@ -1,12 +1,13 @@
 import { Dayjs } from "dayjs";
 import { getMatch, getScoresByDate } from "./routes";
-import { useQuery } from "@tanstack/react-query";
+import { skipToken, useQuery } from "@tanstack/react-query";
 
-export const useScoresByDate = (date?: Dayjs | null) => {
+export const useScoresByDate = (date?: Dayjs) => {
+  const queryKey = date ? ["scores-by-date", String(date)] : [];
+
   return useQuery({
-    queryKey: ["scores-by-date", String(date)],
-    queryFn: () => date && getScoresByDate(date),
-    enabled: Boolean(date),
+    queryKey,
+    queryFn: date ? () => getScoresByDate(date) : skipToken,
   });
 };
 

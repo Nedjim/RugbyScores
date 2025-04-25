@@ -1,10 +1,5 @@
 import dayjs from "dayjs";
-import { MatchStatus } from "../libs/types";
 import { Roboto, Smooch_Sans } from "next/font/google";
-import { faHourglassEnd } from "@fortawesome/free-solid-svg-icons/faHourglassEnd";
-import { faHourglassStart } from "@fortawesome/free-solid-svg-icons/faHourglassStart";
-import { faHourglassHalf } from "@fortawesome/free-solid-svg-icons/faHourglassHalf";
-import { faHourglass } from "@fortawesome/free-solid-svg-icons/faHourglass";
 
 export const roboto = Roboto({
   weight: "300",
@@ -17,19 +12,6 @@ export const smooch = Smooch_Sans({
   display: "swap",
   subsets: ["latin"],
 });
-
-export const getIconsByStatus = (status: MatchStatus) => {
-  switch (status) {
-    case "Result":
-      return faHourglassEnd;
-    case "First Half":
-      return faHourglassStart;
-    case "Second Half":
-      return faHourglassHalf;
-    default:
-      return faHourglass;
-  }
-};
 
 export const getQueryDateFilter = (searchParams: URLSearchParams) => {
   const date = searchParams.get("date");

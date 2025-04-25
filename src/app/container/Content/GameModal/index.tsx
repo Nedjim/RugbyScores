@@ -31,9 +31,7 @@ const GameModal = (props: GameModalType) => {
     >
       <Fade in={isOpen}>
         <div className={`${styles.modalContent} ${roboto.className}`}>
-          {isLoading && status === "loading" && (
-            <div className={styles.loading}>Loading...</div>
-          )}
+          {isLoading && <div className={styles.loading}>Loading...</div>}
           {isSuccess && status === "success" && data && (
             <div>
               <Navigation
