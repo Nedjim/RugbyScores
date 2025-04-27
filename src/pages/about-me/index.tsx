@@ -1,6 +1,4 @@
 import { memo } from "react";
-import Image from "next/image";
-import DescriptionImg from "../../../public/myself.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
@@ -14,15 +12,6 @@ const AboutMe = () => {
     <div className={styles.about}>
       <h2 className={styles.title}>About me</h2>
       <div className={styles.description}>
-        <Image
-          className={styles.img}
-          src={DescriptionImg}
-          alt="Picture of Nedjim DANIMON NGABA"
-          width={200}
-          height={250}
-          priority
-          placeholder="blur"
-        />
         <section className={styles.section}>
           <p>Hi !</p>
           <p>

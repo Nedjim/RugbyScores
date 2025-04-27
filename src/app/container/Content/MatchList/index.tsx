@@ -32,10 +32,14 @@ const MatchList = (props: { data: ScoresByDateHookResponse }) => {
   const { data } = props;
   const { data: matchsData, status, isLoading, isSuccess } = data;
 
+  debugger;
   return (
     <>
       {!matchsData && (
-        <div className={styles.empty}>Please, select a date...</div>
+        <div className={styles.empty}>
+          Please, select an other date or change your filters to have more
+          results.
+        </div>
       )}
       {matchsData && isLoading && status === "loading" && (
         <div className={styles.loading}>Loading ...</div>
