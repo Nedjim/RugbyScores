@@ -32,7 +32,6 @@ const MatchList = (props: { data: ScoresByDateHookResponse }) => {
   const { data } = props;
   const { data: matchsData, status, isLoading, isSuccess } = data;
 
-  debugger;
   return (
     <>
       {!matchsData && (

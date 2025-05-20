@@ -52,6 +52,22 @@ type GetMatchMeta = {
   };
 };
 
+type CompetitionsMeta = {
+  description: string;
+  fields: {
+    id: string;
+    name: string;
+    season: number;
+    season_name: string;
+  };
+  title: string;
+};
+
+type TeamsByCompetitionSeasonMeta = {
+  description: string;
+  title: string;
+};
+
 export type MatchStatus =
   | "Not Started"
   | "First Half"
@@ -181,3 +197,13 @@ export type ScoresByDateHookResponse = UseQueryResult<
   Match[] | null | undefined,
   unknown
 >;
+
+export type CompetitionsResponse = {
+  meta: CompetitionsMeta;
+  results: CompetitionsMeta["fields"][];
+};
+
+export type TeamsByCompetitionSeasonResponse = {
+  meta: TeamsByCompetitionSeasonMeta;
+  results: TeamsByCompetitionSeasonMeta[];
+};

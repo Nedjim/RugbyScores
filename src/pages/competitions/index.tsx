@@ -9,6 +9,7 @@ import { useScoresByDate } from "@/app/libs/hooks";
 import Aside from "@/app/container/Aside";
 import Content from "@/app/container/Content";
 import styles from "./index.module.scss";
+import Competitions from "@/app/container/Competitions";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -53,7 +54,7 @@ const CompetitionsPageContent = memo(function CompetitionsPageContent() {
     <div className={styles.pageWrapper}>
       <div className={styles.main}>
         <Aside data={data} />
-        <Content data={data} />
+        {!date ? <Competitions /> : <Content data={data} />}
       </div>
     </div>
   );

@@ -1,5 +1,10 @@
 import { Dayjs } from "dayjs";
-import { getMatch, getScoresByDate } from "./routes";
+import {
+  getCompetitions,
+  getMatch,
+  getScoresByDate,
+  getTeamsByCompetitionSeason,
+} from "./routes";
 import { skipToken, useQuery } from "@tanstack/react-query";
 
 export const useScoresByDate = (date?: Dayjs) => {
@@ -13,4 +18,21 @@ export const useScoresByDate = (date?: Dayjs) => {
 
 export const useMatch = (id: number) => {
   return useQuery({ queryKey: ["match", id], queryFn: () => getMatch(id) });
+};
+
+export const useCompetitions = () => {
+  return useQuery({
+    queryKey: ["competitions"],
+    queryFn: () => getCompetitions(),
+  });
+};
+
+export const useTeamsByCompetitionSeason = (
+  competionId: number,
+  season: number,
+) => {
+  return useQuery({
+    queryKey: ["teams", "competition", competionId, season],
+    queryFn: () => getTeamsByCompetitionSeason(competionId, season),
+  });
 };

@@ -19,7 +19,7 @@ import styles from "./index.module.scss";
 const Aside = (props: { data: ScoresByDateHookResponse }) => {
   const { data } = props;
   const searchParams = useSearchParams();
-  const [isExpended, setExpended] = useState(true);
+  const [isExpended, setExpended] = useState(false);
 
   const date = useMemo(() => {
     const dateQuery = searchParams?.toString();
