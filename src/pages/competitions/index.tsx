@@ -1,63 +1,38 @@
 "use client";
-import "normalize.css/normalize.css";
 import { memo, useMemo } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useSearchParams } from "next/navigation";
-import { getQueryDateFilter } from "@/app/utils";
-import { useScoresByDate } from "@/app/libs/hooks";
-import Aside from "@/app/container/Aside";
-import Content from "@/app/container/Content";
+import { useRouter } from "next/router";
+import { useCompetitions, useCurrentSeason } from "@/app/libs/hooks";
+import CustomLinks from "@/app/container/CustomLinks";
 import styles from "./index.module.scss";
-import Competitions from "@/app/container/Competitions";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-      staleTime: 86400000, // 1 day
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
-  },
-});
+const CompetitionsPageContent = () => {
+  const { data, isLoading } = useCompetitions();
+  const router = useRouter();
+  const season = useCurrentSeason();
 
-const CompetitionsPageWrapper = () => {
+  const seasonFilter = useMemo(() => {
+    const { season: seasonFilter } = router.query;
+
+    return seasonFilter || season;
+  }, [router, season]);
+
+  const currentCompetitions = useMemo(() => {
+    if (!data) {
+      return [];
+    }
+    return data.filter((c) => c.season === Number(seasonFilter));
+  }, [data, seasonFilter]);
+
+  if (isLoading) {
+    return <div>...Loading</div>;
+  }
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <CompetitionsPageContent />
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <div className={styles.competitions}>
+      <h2 className={styles.defaultTitle}>Competitions - {seasonFilter}</h2>
+      <CustomLinks links={currentCompetitions} />
+    </div>
   );
 };
 
-const CompetitionsPageContent = memo(function CompetitionsPageContent() {
-  const searchParams = useSearchParams();
-
-  const date = useMemo(() => {
-    const dateQuery = searchParams?.toString();
-
-    if (!dateQuery?.length) {
-      return undefined;
-    }
-
-    const params = new URLSearchParams(dateQuery);
-    const dateFilter = getQueryDateFilter(params);
-
-    return dateFilter;
-  }, [searchParams]);
-
-  const data = useScoresByDate(date);
-
-  return (
-    <div className={styles.pageWrapper}>
-      <div className={styles.main}>
-        <Aside data={data} />
-        {!date ? <Competitions /> : <Content data={data} />}
-      </div>
-    </div>
-  );
-});
-
-export default memo(CompetitionsPageWrapper);
+export default memo(CompetitionsPageContent);

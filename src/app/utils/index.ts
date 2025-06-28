@@ -13,9 +13,7 @@ export const smooch = Smooch_Sans({
   subsets: ["latin"],
 });
 
-export const getQueryDateFilter = (searchParams: URLSearchParams) => {
-  const date = searchParams.get("date");
-
+export const getQueryDateFilter = (date: string) => {
   const [day, month, year] = date?.split("_") || [];
 
   const formattedDate = dayjs(
@@ -25,13 +23,11 @@ export const getQueryDateFilter = (searchParams: URLSearchParams) => {
   return formattedDate;
 };
 
-export const getQueryStringFilter = (
-  searchParams: URLSearchParams,
-  key: string,
-) => {
-  const query = searchParams.get(key) || "";
-
-  return query.split("_").join(" ");
+export const getQueryStringFilter = (value: string) => {
+  if (!value) {
+    return "";
+  }
+  return value.split("_").join(" ");
 };
 
 export const getStatusFilter = (searchParams: URLSearchParams) => {

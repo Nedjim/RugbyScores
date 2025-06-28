@@ -3,23 +3,7 @@ import { UseQueryResult } from "@tanstack/react-query";
 type ScoresByDateMeta = {
   title: string;
   description: string;
-  fields: {
-    id: string;
-    comp_id: string;
-    comp_name: string;
-    season: string;
-    date: string;
-    game_week: string;
-    home: string;
-    away: string;
-    home_id: string;
-    away_id: string;
-    status: MatchStatus;
-    venue: string;
-    home_score: string;
-    away_score: string;
-    updated: string;
-  };
+  fields: Match;
 };
 
 type GetMatchMeta = {
@@ -63,9 +47,15 @@ type CompetitionsMeta = {
   title: string;
 };
 
-type TeamsByCompetitionSeasonMeta = {
+type TeamInfoMeta = {
   description: string;
+  fields: Match;
   title: string;
+};
+
+export type TeamsByCompetitionSeasonMeta = {
+  id: number;
+  name: string;
 };
 
 export type MatchStatus =
@@ -206,4 +196,9 @@ export type CompetitionsResponse = {
 export type TeamsByCompetitionSeasonResponse = {
   meta: TeamsByCompetitionSeasonMeta;
   results: TeamsByCompetitionSeasonMeta[];
+};
+
+export type GetTeamInfoResponse = {
+  meta: TeamInfoMeta;
+  results: TeamInfoMeta["fields"][];
 };

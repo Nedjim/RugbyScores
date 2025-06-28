@@ -1,12 +1,33 @@
-.pageWrapper {
+.competitions {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex: 1;
   overflow: hidden;
-}
 
-.main {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
+  .defaultTitle,
+  .backLink {
+    padding: 40px 40px 16px 40px;
+  }
+
+  .defaultTitle {
+    text-align: center;
+  }
+
+  .backLink {
+    display: flex;
+    gap: 16px;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      color: #03a696;
+    }
+  }
+
+  .empty {
+    text-align: center;
+  }
+  .teamTitle {
+    text-align: center;
+  }
 }

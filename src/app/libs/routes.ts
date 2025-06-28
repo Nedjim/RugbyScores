@@ -5,6 +5,7 @@ import {
   ScoresByDateResponse,
   CompetitionsResponse,
   TeamsByCompetitionSeasonResponse,
+  GetTeamInfoResponse,
 } from "./types";
 
 const API_URL = "https://rugby-live-data.p.rapidapi.com";
@@ -54,8 +55,8 @@ export async function getCompetitions() {
 }
 
 export async function getTeamsByCompetitionSeason(
-  competionId: number,
-  season: number,
+  competionId: string,
+  season: string,
 ) {
   const options = {
     method: "GET",
@@ -65,6 +66,18 @@ export async function getTeamsByCompetitionSeason(
 
   const response =
     await axios.request<TeamsByCompetitionSeasonResponse>(options);
+
+  return response.data.results;
+}
+
+export async function getTeamInfo(id: string) {
+  const options = {
+    method: "GET",
+    url: `${API_URL}/fixtures-results-by-team/${id}`,
+    headers: HEADERS,
+  };
+
+  const response = await axios.request<GetTeamInfoResponse>(options);
 
   return response.data.results;
 }

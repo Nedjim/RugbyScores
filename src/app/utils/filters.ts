@@ -1,23 +1,20 @@
-import { Match } from "../libs/types";
-import { getQueryStringFilter, getStatusFilter } from ".";
-import { TAG_LIST } from "../container/Aside/StatusFilter";
 import dayjs from "dayjs";
+import { Match } from "../libs/types";
+import { getQueryStringFilter } from ".";
+import { TAG_LIST } from "../container/Aside/StatusFilter";
+import { NextRouter } from "next/router";
 
-export const matchsFilter = (props: {
-  data: Match[];
-  searchParams: URLSearchParams | null;
-}) => {
-  const { data, searchParams } = props;
-  const params = new URLSearchParams(searchParams?.toString());
+export const matchsFilter = (props: { data: Match[]; router: NextRouter }) => {
+  const { data, router } = props;
 
-  if (searchParams) {
-    return data.filter((match) => isMatchAvailable({ match, params }));
+  if (Object.keys(router.query).length) {
+    return data.filter((match) => isMatchAvailable({ match, router }));
   }
 
-  return sortMathsByDate(data);
+  return sortMatchesByDate(data);
 };
 
-const sortMathsByDate = (data: Match[]) => {
+const sortMatchesByDate = (data: Match[]) => {
   return data.sort((a, b) => {
     const isBefore = dayjs(a.date).isBefore(dayjs(b.date));
     const isAfter = dayjs(a.date).isAfter(dayjs(b.date));
@@ -33,17 +30,21 @@ const sortMathsByDate = (data: Match[]) => {
   });
 };
 
-const isMatchAvailable = (props: { match: Match; params: URLSearchParams }) => {
+const isMatchAvailable = (props: { match: Match; router: NextRouter }) => {
+  const { team, competition, status } = props.router.query;
   return (
-    hasTeamFilter(props) &&
-    hasCompetitionFilter(props) &&
-    hasStatusFilter(props)
+    hasTeamFilter({ match: props.match, value: team as string }) &&
+    hasCompetitionFilter({
+      match: props.match,
+      value: competition as string,
+    }) &&
+    hasStatusFilter({ match: props.match, value: status as string })
   );
 };
 
-const hasTeamFilter = (props: { match: Match; params: URLSearchParams }) => {
-  const { match, params } = props;
-  const filter = getQueryStringFilter(params, "team");
+const hasTeamFilter = (props: { match: Match; value: string }) => {
+  const { match, value } = props;
+  const filter = getQueryStringFilter(value);
 
   if (!filter) {
     return true;
@@ -51,12 +52,9 @@ const hasTeamFilter = (props: { match: Match; params: URLSearchParams }) => {
   return match.home.includes(filter) || match.away.includes(filter);
 };
 
-const hasCompetitionFilter = (props: {
-  match: Match;
-  params: URLSearchParams;
-}) => {
-  const { match, params } = props;
-  const filter = getQueryStringFilter(params, "competition");
+const hasCompetitionFilter = (props: { match: Match; value: string }) => {
+  const { match, value } = props;
+  const filter = getQueryStringFilter(value);
 
   if (!filter) {
     return true;
@@ -65,15 +63,14 @@ const hasCompetitionFilter = (props: {
   return match.comp_name.includes(filter);
 };
 
-const hasStatusFilter = (props: { match: Match; params: URLSearchParams }) => {
-  const { match, params } = props;
-  const filter = getStatusFilter(params);
+const hasStatusFilter = (props: { match: Match; value: string }) => {
+  const { match, value } = props;
 
-  if (!filter) {
+  if (!value) {
     return true;
   }
 
-  const statusList = TAG_LIST.find(({ id }) => id === filter);
+  const statusList = TAG_LIST.find(({ id }) => id === value);
 
   return Boolean(statusList?.values.includes(match.status));
 };

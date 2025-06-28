@@ -5,14 +5,15 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
+import { useDateFilter } from "@/app/libs/hooks";
 
 const DATE_FORMAT = "DD/MM/YYYY";
 const URL_DATA_FILTER_FORMAT = "DD_MM_YYYY";
 
-const SeasonCalendar = (props: { date?: Dayjs }) => {
-  const { date } = props;
+const MatchesDay = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const date = useDateFilter(router);
 
   const handleChange = useCallback(
     (value: Dayjs | null) => {
@@ -42,4 +43,4 @@ const SeasonCalendar = (props: { date?: Dayjs }) => {
   );
 };
 
-export default memo(SeasonCalendar);
+export default memo(MatchesDay);

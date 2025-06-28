@@ -1,3 +1,4 @@
+"use client";
 import clsx from "clsx";
 import { memo, useCallback } from "react";
 import { usePathname, useSearchParams } from "next/navigation";

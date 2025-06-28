@@ -1,3 +1,4 @@
+"use client";
 import { memo } from "react";
 import { MatchStatus } from "@/app/libs/types";
 import { useRouter } from "next/router";

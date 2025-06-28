@@ -8,5 +8,10 @@
     display: flex;
     flex: 1;
     overflow: hidden;
+
+    .children {
+      flex: 1;
+      overflow: scroll;
+    }
   }
 }

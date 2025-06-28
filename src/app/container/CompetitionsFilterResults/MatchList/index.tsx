@@ -1,17 +1,18 @@
+"use client";
 import { memo, useMemo } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
 import { Match, ScoresByDateHookResponse } from "@/app/libs/types";
 import { matchsFilter } from "@/app/utils/filters";
-import MatchCard from "../MatchCard";
+import MatchCard from "../../Matchs/MatchCard";
 import styles from "./index.module.scss";
 
 const Matchs = (props: { data: Match[] }) => {
   const { data } = props;
-  const searchParams = useSearchParams();
+  const router = useRouter();
 
   const filteredData = useMemo(
-    () => matchsFilter({ data, searchParams }),
-    [searchParams, data],
+    () => matchsFilter({ data, router }),
+    [router, data],
   );
 
   return (

@@ -7,9 +7,9 @@ import { faCircleCheck } from "@fortawesome/free-solid-svg-icons/faCircleCheck";
 import { Match } from "@/app/libs/types";
 import Score from "@/app/components/Score";
 import ActionButton from "@/app/components/ActionButton";
-import GameModal from "../GameModal";
 
 import styles from "./index.module.scss";
+import GameModal from "../../CompetitionsFilterResults/GameModal";
 
 const MatchCard = (props: { match: Match }) => {
   const { match } = props;
@@ -80,14 +80,14 @@ const MatchCard = (props: { match: Match }) => {
 
 const MatchCardHeader = memo(function MatchCardHeader(props: { match: Match }) {
   const { match } = props;
-  const { comp_name: competionName, season, status, date } = match;
+  const { comp_name: competionName, status, date } = match;
   const isScoreAvailable = status === "Result";
 
   return (
     <div className={styles.header}>
       <div className={styles.left}>
         <div className={styles.compName}>{competionName}</div>
-        <div className={styles.season}>{season}</div>
+        <div className={styles.season}>{dayjs(date).format("DD/MM/YYYY")}</div>
       </div>
       <div className={styles.right}>
         <span>{dayjs(date).format("HH:mm")}</span>

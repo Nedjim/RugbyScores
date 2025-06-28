@@ -1,3 +1,4 @@
+"use client";
 import clsx from "clsx";
 import { memo } from "react";
 import { smooch } from "@/app/utils";
@@ -19,19 +20,22 @@ const Header = () => {
       </div>
       <div className={styles.menu}>
         <Link
+          href="/matches-day"
+          className={clsx(isActive("/matches-day") && styles.active)}
+        >
+          Matches day
+        </Link>
+        <Link
           href="/competitions"
           className={clsx(isActive("/competitions") && styles.active)}
         >
           Competitions
         </Link>
-        <Link href="/about-me" className={clsx(isActive("") && styles.active)}>
-          About me
-        </Link>
         <Link
-          href="/contact"
-          className={clsx(isActive("/contact") && styles.active)}
+          href="/about-me"
+          className={clsx(isActive("/about-me") && styles.active)}
         >
-          Contact
+          About me
         </Link>
       </div>
     </header>
