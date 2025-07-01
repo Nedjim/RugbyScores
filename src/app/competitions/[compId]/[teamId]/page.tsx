@@ -1,7 +1,7 @@
 "use client";
 import dayjs from "dayjs";
 import { memo, useMemo } from "react";
-import { useRouter, useParams, useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons/faAngleLeft";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTeam } from "@/libs/hooks";
@@ -10,13 +10,12 @@ import Matches from "@/container/Matches";
 import styles from "../../index.module.scss";
 
 function TeamPage() {
-  const router = useRouter();
   const params = useParams();
   const searchParams = useSearchParams();
   const compIdParam = params.compId;
   const teamIdParam = params.teamId;
   const seasonFilter = searchParams.get("season");
-  const { data, isLoading } = useTeam(teamIdParam);
+  const { data } = useTeam(teamIdParam);
 
   const filteredData = useMemo(() => {
     if (!data) {
@@ -33,14 +32,6 @@ function TeamPage() {
       })
       .reverse();
   }, [data, seasonFilter, compIdParam]);
-
-  if (isLoading) {
-    return <div>...Loading</div>;
-  }
-
-  if (!filteredData.length) {
-    router.push(`/competitions/${compIdParam}?season=${seasonFilter}`);
-  }
 
   return (
     <div className={styles.competitions}>

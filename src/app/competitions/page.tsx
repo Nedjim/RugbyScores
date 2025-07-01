@@ -6,7 +6,7 @@ import CustomLinks from "@/container/CustomLinks";
 import styles from "./index.module.scss";
 
 const CompetitionsPage = () => {
-  const { data, isLoading } = useCompetitions();
+  const { data } = useCompetitions();
   const searchParams = useSearchParams();
   const season = useCurrentSeason();
 
@@ -22,10 +22,6 @@ const CompetitionsPage = () => {
     }
     return data.filter((c) => c.season === Number(seasonFilter));
   }, [data, seasonFilter]);
-
-  if (isLoading) {
-    return <div>...Loading</div>;
-  }
 
   return (
     <div className={styles.competitions}>

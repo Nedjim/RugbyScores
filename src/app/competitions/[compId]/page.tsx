@@ -13,12 +13,7 @@ function CompetitionPage() {
   const params = useParams();
   const compId = params.compId as string;
   const season = searchParams.get("season");
-
-  const { data, isLoading } = useTeamsByCompetitionSeason(season, compId);
-
-  if (isLoading) {
-    return <div>...Loading</div>;
-  }
+  const { data } = useTeamsByCompetitionSeason(season, compId);
 
   return (
     <div className={styles.competitions}>

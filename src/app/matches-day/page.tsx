@@ -9,7 +9,7 @@ import styles from "./index.module.scss";
 const MatchsDayPage = () => {
   const searchParams = useSearchParams();
   const date = useDateFilter(searchParams?.get("date"));
-  const { data, isLoading } = useMatchesByDate(date);
+  const { data } = useMatchesByDate(date);
 
   const filteredData = useMemo(
     () => (data ? matchesFilter({ data, searchParams }) : []),
@@ -18,8 +18,7 @@ const MatchsDayPage = () => {
 
   return (
     <div className={styles.content}>
-      {isLoading && <div>...Loading</div>}
-      {!isLoading && <Matches data={filteredData} />}
+      <Matches data={filteredData} />
     </div>
   );
 };

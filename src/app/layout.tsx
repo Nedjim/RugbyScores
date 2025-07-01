@@ -1,5 +1,5 @@
 import "normalize.css/normalize.css";
-import { memo } from "react";
+import { memo, Suspense } from "react";
 import { roboto } from "@/utils";
 import Header from "@/container/Header";
 import Aside from "@/container/Aside";
@@ -13,12 +13,14 @@ function RootLayout({ children }: { children: React.ReactNode }) {
       <body>
         <div className={styles.layout}>
           <Header />
-          <Providers>
-            <main className={`${styles.main} ${roboto.className}`}>
-              <Aside />
-              <div className={styles.children}>{children}</div>
-            </main>
-          </Providers>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Providers>
+              <main className={`${styles.main} ${roboto.className}`}>
+                <Aside />
+                <div className={styles.children}>{children}</div>
+              </main>
+            </Providers>
+          </Suspense>
         </div>
       </body>
     </html>

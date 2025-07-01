@@ -2,9 +2,9 @@
 import { memo, useMemo } from "react";
 import { matchesFilter } from "@/utils/filters";
 import { Match, ScoresByDateHookResponse } from "@/libs/types";
+import { useSearchParams } from "next/navigation";
 import MatchCard from "@/container/Matches/MatchCard";
 import styles from "./index.module.scss";
-import { useSearchParams } from "next/navigation";
 
 const Matchs = (props: { data: Match[] }) => {
   const { data } = props;
@@ -31,7 +31,7 @@ const Matchs = (props: { data: Match[] }) => {
 
 const MatchList = (props: { data: ScoresByDateHookResponse }) => {
   const { data } = props;
-  const { data: matchsData, status, isLoading, isSuccess } = data;
+  const { data: matchsData, status, isSuccess } = data;
 
   return (
     <>
@@ -40,9 +40,6 @@ const MatchList = (props: { data: ScoresByDateHookResponse }) => {
           Please, select an other date or change your filters to have more
           results.
         </div>
-      )}
-      {matchsData && isLoading && status === "loading" && (
-        <div className={styles.loading}>Loading ...</div>
       )}
       {matchsData && isSuccess && status === "success" && data && (
         <Matchs data={matchsData} />
