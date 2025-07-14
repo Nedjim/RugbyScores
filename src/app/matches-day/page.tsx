@@ -1,26 +1,32 @@
-"use client";
-import { memo, useMemo } from "react";
-import { useDateFilter, useMatchesByDate } from "@/libs/hooks";
-import { useSearchParams } from "next/navigation";
-import { matchesFilter } from "@/utils/filters";
-import Matches from "@/container/Matches";
-import styles from "./index.module.scss";
+import { memo } from "react";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
+import { getDateFilter } from "@/libs/hooks";
+import { getMatchesByDate } from "@/libs/routes";
+import MatchesDay from "@/container/MatchesDay";
 
-const MatchsDayPage = () => {
-  const searchParams = useSearchParams();
-  const date = useDateFilter(searchParams?.get("date"));
-  const { data } = useMatchesByDate(date);
+type MatchesDayPageProps = {
+  searchParams: Promise<Record<string, string>>;
+};
 
-  const filteredData = useMemo(
-    () => (data ? matchesFilter({ data, searchParams }) : []),
-    [searchParams, data],
-  );
+const MatchesDayPage = async ({ searchParams }: MatchesDayPageProps) => {
+  const queryClient = new QueryClient();
+  const { date } = await searchParams;
+  const dateFilter = getDateFilter(date);
+
+  await queryClient.prefetchQuery({
+    queryKey: ["matches-by-date", String(dateFilter)],
+    queryFn: () => getMatchesByDate(dateFilter),
+  });
 
   return (
-    <div className={styles.content}>
-      <Matches data={filteredData} />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <MatchesDay />
+    </HydrationBoundary>
   );
 };
 
-export default memo(MatchsDayPage);
+export default memo(MatchesDayPage);

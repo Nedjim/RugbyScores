@@ -8,7 +8,7 @@ import styles from "./index.module.scss";
 
 const Header = () => {
   const pathname = usePathname();
-  const isActive = (href: string) => pathname === href;
+  const isActive = (href: string) => pathname.includes(href);
 
   return (
     <header className={clsx(styles.header, smooch.className)}>
@@ -20,16 +20,16 @@ const Header = () => {
       </div>
       <div className={styles.menu}>
         <Link
-          href="/matches-day"
-          className={clsx(isActive("/matches-day") && styles.active)}
-        >
-          Matches day
-        </Link>
-        <Link
           href="/competitions"
           className={clsx(isActive("/competitions") && styles.active)}
         >
           Competitions
+        </Link>
+        <Link
+          href="/matches-day"
+          className={clsx(isActive("/matches-day") && styles.active)}
+        >
+          Matches day
         </Link>
         <Link
           href="/about-me"

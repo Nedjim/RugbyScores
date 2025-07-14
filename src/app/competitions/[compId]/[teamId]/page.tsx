@@ -1,53 +1,29 @@
-"use client";
-import dayjs from "dayjs";
-import { memo, useMemo } from "react";
-import { useParams, useSearchParams } from "next/navigation";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons/faAngleLeft";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useTeam } from "@/libs/hooks";
-import Link from "next/link";
-import Matches from "@/container/Matches";
-import styles from "../../index.module.scss";
+import { getTeamInfo } from "@/libs/routes";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
+import Team from "@/container/Team";
 
-function TeamPage() {
-  const params = useParams();
-  const searchParams = useSearchParams();
-  const compIdParam = params.compId;
-  const teamIdParam = params.teamId;
-  const seasonFilter = searchParams.get("season");
-  const { data } = useTeam(teamIdParam);
+type TeamPageProps = {
+  params: Promise<{ teamId: string }>;
+};
 
-  const filteredData = useMemo(() => {
-    if (!data) {
-      return [];
-    }
+const TeamPage = async ({ params }: TeamPageProps) => {
+  const queryClient = new QueryClient();
+  const { teamId } = await params;
 
-    return data
-      .filter((i) => {
-        const { date, comp_id } = i;
-        const season = dayjs(date).year();
-        return (
-          String(season) === seasonFilter && String(comp_id) === compIdParam
-        );
-      })
-      .reverse();
-  }, [data, seasonFilter, compIdParam]);
+  await queryClient.prefetchQuery({
+    queryKey: ["team", teamId],
+    queryFn: () => getTeamInfo(teamId),
+  });
 
   return (
-    <div className={styles.competitions}>
-      <Link
-        href={{
-          pathname: `/competitions/${compIdParam}`,
-          query: { season: seasonFilter },
-        }}
-        className={styles.backLink}
-      >
-        <FontAwesomeIcon icon={faAngleLeft} />
-        <span>All teams</span>
-      </Link>
-      <Matches data={filteredData} />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Team />
+    </HydrationBoundary>
   );
-}
+};
 
-export default memo(TeamPage);
+export default TeamPage;

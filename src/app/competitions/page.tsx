@@ -1,34 +1,24 @@
-"use client";
-import { memo, useMemo } from "react";
-import { useSearchParams } from "next/navigation";
-import { useCompetitions, useCurrentSeason } from "@/libs/hooks";
-import CustomLinks from "@/container/CustomLinks";
-import styles from "./index.module.scss";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
+import { getCompetitions } from "@/libs/routes";
+import Competitions from "@/container/Competitions";
 
-const CompetitionsPage = () => {
-  const { data } = useCompetitions();
-  const searchParams = useSearchParams();
-  const season = useCurrentSeason();
+const CompetitionsPage = async () => {
+  const queryClient = new QueryClient();
 
-  const seasonFilter = useMemo(() => {
-    const seasonFilter = searchParams.get("season");
-
-    return seasonFilter || season;
-  }, [season, searchParams]);
-
-  const currentCompetitions = useMemo(() => {
-    if (!data) {
-      return [];
-    }
-    return data.filter((c) => c.season === Number(seasonFilter));
-  }, [data, seasonFilter]);
+  await queryClient.prefetchQuery({
+    queryKey: ["competitions"],
+    queryFn: getCompetitions,
+  });
 
   return (
-    <div className={styles.competitions}>
-      <h2 className={styles.defaultTitle}>Competitions - {seasonFilter}</h2>
-      <CustomLinks links={currentCompetitions} />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Competitions />
+    </HydrationBoundary>
   );
 };
 
-export default memo(CompetitionsPage);
+export default CompetitionsPage;

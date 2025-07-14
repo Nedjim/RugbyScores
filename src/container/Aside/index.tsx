@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons/faAngleLeft";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons/faAngleRight";
 import { faFilter } from "@fortawesome/free-solid-svg-icons/faFilter";
-import { useDateFilter, useMatchesByDate } from "@/libs/hooks";
+import { getDateFilter, useMatchesByDate } from "@/libs/hooks";
 import MatchesDayDatePicker from "@/components/DatePickers/MatchesDay";
 import CompetitionsDatePicker from "@/components/DatePickers/Competitions";
 import CompetitionFilter from "./CompetitionFilter";
@@ -19,7 +19,7 @@ import styles from "./index.module.scss";
 const Aside = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const date = useDateFilter(searchParams?.get("date"));
+  const date = getDateFilter(searchParams?.get("date"));
   const matchesDayEnabled = pathname === "/matches-day";
   const data = useMatchesByDate(date, matchesDayEnabled);
   const [isExpended, setExpended] = useState(false);

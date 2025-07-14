@@ -1,0 +1,18 @@
+.competition {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .backLink {
+    padding: 40px 40px 16px 40px;
+    display: flex;
+    gap: 16px;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      color: #03a696;
+    }
+  }
+}

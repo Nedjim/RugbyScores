@@ -1,4 +1,3 @@
-"use client";
 import { memo } from "react";
 import MatchCard from "./MatchCard";
 import { Match } from "@/libs/types";
@@ -9,11 +8,6 @@ const Matches = (props: { data: Match[] }) => {
 
   return (
     <div className={styles.matchList}>
-      {!data.length && (
-        <div className={styles.emptyData}>
-          Sorry, no matchs found...please change your filters.
-        </div>
-      )}
       {data.map((match, key) => {
         return <MatchCard key={key} match={match} />;
       })}

@@ -8,7 +8,7 @@ import { Match } from "@/libs/types";
 import Score from "@/components/Score";
 import ActionButton from "@/components/ActionButton";
 import styles from "./index.module.scss";
-import GameModal from "../../CompetitionsFilterResults/GameModal";
+import GameModal from "../../GameModal";
 
 const MatchCard = (props: { match: Match }) => {
   const { match } = props;

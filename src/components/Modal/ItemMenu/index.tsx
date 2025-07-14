@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { Button } from "@mui/material";
-import { ContentType } from "@/container/CompetitionsFilterResults/GameModal";
+import { ContentType } from "@/container/GameModal";
 import styles from "./index.module.scss";
 
 const ItemMenu = (props: {

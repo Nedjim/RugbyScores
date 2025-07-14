@@ -1,41 +1,34 @@
-"use client";
-import { memo } from "react";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons/faAngleLeft";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useTeamsByCompetitionSeason } from "@/libs/hooks";
-import { useSearchParams, useParams } from "next/navigation";
-import CustomLinks from "@/container/CustomLinks";
-import Link from "next/link";
-import styles from "../index.module.scss";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
+import { getTeamsByCompetitionSeason } from "@/libs/routes";
+import Competition from "@/container/Competition";
 
-function CompetitionPage() {
-  const searchParams = useSearchParams();
-  const params = useParams();
-  const compId = params.compId as string;
-  const season = searchParams.get("season");
-  const { data } = useTeamsByCompetitionSeason(season, compId);
+type CompetitionPageProps = {
+  searchParams: Promise<Record<string, string>>;
+  params: Promise<{ compId: string }>;
+};
+
+const CompetitionPage = async ({
+  searchParams,
+  params,
+}: CompetitionPageProps) => {
+  const queryClient = new QueryClient();
+  const { compId } = await params;
+  const { season } = await searchParams;
+
+  await queryClient.prefetchQuery({
+    queryKey: ["teams", "competition", compId, season],
+    queryFn: () => getTeamsByCompetitionSeason(compId, season),
+  });
 
   return (
-    <div className={styles.competitions}>
-      <Link
-        href={{
-          pathname: "/competitions",
-          query: { season },
-        }}
-        className={styles.backLink}
-      >
-        <FontAwesomeIcon icon={faAngleLeft} />
-        <span>All competitions</span>
-      </Link>
-      {data?.length ? (
-        <CustomLinks links={data} />
-      ) : (
-        <div className={styles.empty}>
-          No results. Please, change your filters.
-        </div>
-      )}
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Competition />
+    </HydrationBoundary>
   );
-}
+};
 
-export default memo(CompetitionPage);
+export default CompetitionPage;

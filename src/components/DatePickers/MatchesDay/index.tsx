@@ -4,7 +4,7 @@ import { memo, useCallback } from "react";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useDateFilter } from "@/libs/hooks";
+import { getDateFilter } from "@/libs/hooks";
 
 const DATE_FORMAT = "DD/MM/YYYY";
 const URL_DATA_FILTER_FORMAT = "DD-MM-YYYY";
@@ -13,7 +13,7 @@ const MatchesDay = () => {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const date = useDateFilter(searchParams?.get("date"));
+  const date = getDateFilter(searchParams?.get("date"));
 
   const handleChange = useCallback(
     (value: Dayjs | null) => {
