@@ -16,12 +16,19 @@
 
   .showFiltersPanel {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 8px;
     color: #0a6d63;
-    margin: 16px;
+    margin-bottom: 16px;
     z-index: 140;
+    margin-left: 24px;
+    gap: 8px;
+
+    svg {
+      width: 16px;
+      &:last-child {
+        width: 12px;
+      }
+    }
 
     @media only screen and (min-width: 640px) {
       .clearButton {

@@ -1,5 +1,5 @@
-import { Chip } from "@mui/material";
 import { memo } from "react";
+import Chip from "@mui/material/Chip";
 
 type TagType = {
   label: string;

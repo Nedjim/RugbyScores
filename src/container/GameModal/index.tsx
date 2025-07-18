@@ -1,7 +1,8 @@
 import { memo, useState } from "react";
-import { Fade, Modal } from "@mui/material";
 import { roboto } from "@/utils";
 import { useMatch } from "@/libs/hooks";
+import Fade from "@mui/material/Fade";
+import Modal from "@mui/material/Modal";
 import Referees from "@/components/Modal/Referees";
 import PlayersContent from "./PlayersContent";
 import SubstitutesContent from "./SubstitutesContent";

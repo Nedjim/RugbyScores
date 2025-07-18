@@ -1,7 +1,6 @@
 "use client";
 import clsx from "clsx";
 import { memo, useState } from "react";
-import { Divider, IconButton } from "@mui/material";
 import { usePathname, useSearchParams } from "next/navigation";
 import { roboto } from "@/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,6 +8,8 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons/faAngleLeft";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons/faAngleRight";
 import { faFilter } from "@fortawesome/free-solid-svg-icons/faFilter";
 import { getDateFilter, useMatchesByDate } from "@/libs/hooks";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
 import MatchesDayDatePicker from "@/components/DatePickers/MatchesDay";
 import CompetitionsDatePicker from "@/components/DatePickers/Competitions";
 import CompetitionFilter from "./CompetitionFilter";
@@ -24,6 +25,7 @@ const Aside = () => {
   const data = useMatchesByDate(date, matchesDayEnabled);
   const [isExpended, setExpended] = useState(false);
 
+  debugger;
   return (
     <aside
       className={clsx(
@@ -37,10 +39,9 @@ const Aside = () => {
       >
         <FontAwesomeIcon icon={faFilter} />
         <IconButton
-          size="small"
-          hidden={false}
           color="inherit"
           onClick={() => setExpended(!isExpended)}
+          size="small"
         >
           {isExpended ? (
             <FontAwesomeIcon icon={faAngleLeft} />

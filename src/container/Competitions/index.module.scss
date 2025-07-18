@@ -5,7 +5,11 @@
   overflow: hidden;
 
   .defaultTitle {
-    padding: 40px 40px 16px 40px;
+    padding: 24px 40px 16px;
     text-align: center;
+
+    @media only screen and (min-width: 640px) {
+      padding: 40px 40px 16px 40px;
+    }
   }
 }

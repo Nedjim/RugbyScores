@@ -26,7 +26,10 @@ export const getDateFilter = (date?: string | null) => {
 };
 
 export const useMatch = (id: number) => {
-  return useQuery({ queryKey: ["match", id], queryFn: () => getMatch(id) });
+  return useSuspenseQuery({
+    queryKey: ["match", id],
+    queryFn: () => getMatch(id),
+  });
 };
 
 export const useMatchesByDate = (date: Dayjs, enabled?: boolean) => {
