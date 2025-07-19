@@ -11,19 +11,22 @@ const MatchesDay = () => {
   const date = getDateFilter(searchParams?.get("date"));
   const { data } = useMatchesByDate(date);
 
-  const filteredData = useMemo(
+  const matches = useMemo(
     () => (data ? matchesFilter({ data, searchParams }) : []),
     [searchParams, data],
   );
 
+  if (!matches.length) {
+    return (
+      <div className={styles.emptyState}>
+        Please adjust your filters. No results were found for this journey.
+      </div>
+    );
+  }
+
   return (
     <div className={styles.content}>
-      {!!filteredData.length && <Matches data={filteredData} />}
-      {!filteredData.length && (
-        <div className={styles.emptyState}>
-          Please adjust your filters. No results were found for this journey.
-        </div>
-      )}
+      <Matches data={matches} />
     </div>
   );
 };

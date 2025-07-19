@@ -6,7 +6,7 @@ import {
   getTeamInfo,
   getTeamsByCompetitionSeason,
 } from "./routes";
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { getQueryDateFilter } from "../utils";
 
 export const useCurrentSeason = () => {
@@ -32,11 +32,10 @@ export const useMatch = (id: number) => {
   });
 };
 
-export const useMatchesByDate = (date: Dayjs, enabled?: boolean) => {
-  return useQuery({
+export const useMatchesByDate = (date: Dayjs) => {
+  return useSuspenseQuery({
     queryKey: ["matches-by-date", String(date)],
     queryFn: () => getMatchesByDate(date),
-    enabled,
   });
 };
 

@@ -22,10 +22,8 @@ const Aside = () => {
   const searchParams = useSearchParams();
   const date = getDateFilter(searchParams?.get("date"));
   const matchesDayEnabled = pathname === "/matches-day";
-  const data = useMatchesByDate(date, matchesDayEnabled);
   const [isExpended, setExpended] = useState(false);
 
-  debugger;
   return (
     <aside
       className={clsx(
@@ -57,14 +55,26 @@ const Aside = () => {
             <>
               <MatchesDayDatePicker />
               <Divider sx={{ margin: "32px 0" }}>Filters</Divider>
-              <CompetitionFilter data={data} />
-              <TeamFilter data={data} />
+              {matchesDayEnabled && <MatchesDayFilters />}
               <StatusFilter />
             </>
           )}
         </div>
       )}
     </aside>
+  );
+};
+
+const MatchesDayFilters = () => {
+  const searchParams = useSearchParams();
+  const date = getDateFilter(searchParams?.get("date"));
+  const {data} = useMatchesByDate(date);
+
+  return (
+    <>
+      <CompetitionFilter data={data} />
+      <TeamFilter data={data} />
+    </>
   );
 };
 

@@ -1,11 +1,13 @@
 import "normalize.css/normalize.css";
+import dynamic from "next/dynamic";
 import { memo, Suspense } from "react";
 import { roboto } from "@/utils";
 import Header from "@/container/Header";
 import Aside from "@/container/Aside";
-import Loading from "@/components/Loading";
 import Providers from "./provider";
 import styles from "./index.module.scss";
+
+const Loading = dynamic(() => import("./loading"));
 
 function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,12 +17,12 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <div className={styles.layout}>
           <Header />
           <Providers>
-            <Suspense fallback={<Loading />}>
-              <main className={`${styles.main} ${roboto.className}`}>
+            <main className={`${styles.main} ${roboto.className}`}>
+              <Suspense fallback={<Loading />}>
                 <Aside />
                 <div className={styles.children}>{children}</div>
-              </main>
-            </Suspense>
+              </Suspense>
+            </main>
           </Providers>
         </div>
       </body>

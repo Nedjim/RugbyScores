@@ -2,22 +2,21 @@
 import { memo, useCallback, useMemo } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { getQueryStringFilter } from "@/utils";
-import { ScoresByDateHookResponse } from "@/libs/types";
+import { Match } from "@/libs/types";
 import SelectFilter from "@/components/SelectFilter";
 
-function TeamFilter(props: { data: ScoresByDateHookResponse }) {
+function TeamFilter(props: { data: Match[] }) {
   const { data } = props;
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { data: matchsData } = data;
 
   const items = useMemo(() => {
     const competitionFilter = getQueryStringFilter(
       searchParams.get("competition"),
     );
 
-    const elements = matchsData
+    const elements = data
       ?.map((el) => {
         const { away, home, comp_name } = el;
 
@@ -32,7 +31,7 @@ function TeamFilter(props: { data: ScoresByDateHookResponse }) {
       .flat();
 
     return [...new Set(elements)].sort();
-  }, [matchsData, searchParams]);
+  }, [data, searchParams]);
 
   const handleChange = useCallback(
     (value: string | null) => {
