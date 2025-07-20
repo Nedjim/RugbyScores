@@ -7,15 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "pnpm lint & pnpm tsc & pnpm prettier . --check & pnpm run build",
-    "prettier-write": "pnpm prettier . --write",
-    "lint-fix": "pnpm lint --fix",
-    "clean-code": "pnpm prettier-write & pnpm lint-fix",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write . && pnpm lint:fix",
+    "format:staged": "lint-staged",
     "prepare": "husky",
-    "analyze": "cross-env ANALYZE=true next build"
+    "analyze": "cross-env ANALYZE=true next build",
+    "check": "pnpm build && pnpm lint && pnpm typecheck",
+    "typecheck": "tsc --project tsconfig.tsc.json"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "*.{ts,tsx,json,scss}": "prettier --write --ignore-unknown"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
