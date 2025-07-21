@@ -68,7 +68,7 @@ const Aside = () => {
 const MatchesDayFilters = () => {
   const searchParams = useSearchParams();
   const date = getDateFilter(searchParams?.get("date"));
-  const {data} = useMatchesByDate(date);
+  const { data } = useMatchesByDate(date);
 
   return (
     <>
