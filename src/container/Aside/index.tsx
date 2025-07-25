@@ -1,6 +1,6 @@
 "use client";
 import clsx from "clsx";
-import { memo, useState } from "react";
+import { memo, Suspense, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { roboto } from "@/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,12 +16,10 @@ import CompetitionFilter from "./CompetitionFilter";
 import TeamFilter from "./TeamFilter";
 import StatusFilter from "./StatusFilter";
 import styles from "./index.module.scss";
+import Loading from "@/app/loading";
 
 const Aside = () => {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const date = getDateFilter(searchParams?.get("date"));
-  const matchesDayEnabled = pathname === "/matches-day";
   const [isExpended, setExpended] = useState(false);
 
   return (
@@ -51,11 +49,13 @@ const Aside = () => {
       {isExpended && (
         <div className={styles.filters}>
           {pathname?.includes("/competitions") && <CompetitionsDatePicker />}
-          {pathname?.includes("/matches-day") && date && (
+          {pathname?.includes("/matches-day") && (
             <>
               <MatchesDayDatePicker />
               <Divider sx={{ margin: "32px 0" }}>Filters</Divider>
-              {matchesDayEnabled && <MatchesDayFilters />}
+              <Suspense fallback={<Loading />}>
+                <MatchesDayFilters />
+              </Suspense>
               <StatusFilter />
             </>
           )}

@@ -4,6 +4,7 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons/faAngleLeft";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTeamsByCompetitionSeason } from "@/libs/hooks";
 import { useParams, useSearchParams } from "next/navigation";
+import EmptyState from "@/components/EmptyState";
 import Link from "next/link";
 import CustomLinks from "../CustomLinks";
 import styles from "./index.module.scss";
@@ -28,7 +29,12 @@ const Competition = () => {
         <FontAwesomeIcon icon={faAngleLeft} />
         <span>All competitions</span>
       </Link>
-      <CustomLinks links={data} />
+
+      {!data.length ? (
+        <EmptyState text="Sorry, teams are not available... " />
+      ) : (
+        <CustomLinks links={data} />
+      )}
     </div>
   );
 };

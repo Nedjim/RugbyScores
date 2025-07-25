@@ -18,8 +18,8 @@ function RootLayout({ children }: { children: React.ReactNode }) {
           <Header />
           <Providers>
             <main className={`${styles.main} ${roboto.className}`}>
+              <Aside />
               <Suspense fallback={<Loading />}>
-                <Aside />
                 <div className={styles.children}>{children}</div>
               </Suspense>
             </main>

@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { matchesFilter } from "@/utils/filters";
 import Matches from "@/container/MatchList";
 import styles from "./index.module.scss";
+import EmptyState from "@/components/EmptyState";
 
 const MatchesDay = () => {
   const searchParams = useSearchParams();
@@ -18,9 +19,7 @@ const MatchesDay = () => {
 
   if (!matches.length) {
     return (
-      <div className={styles.emptyState}>
-        Please adjust your filters. No results were found for this journey.
-      </div>
+      <EmptyState text="Please adjust your filters. No results were found for this journey." />
     );
   }
 

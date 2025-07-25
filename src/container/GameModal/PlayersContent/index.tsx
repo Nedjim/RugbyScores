@@ -2,6 +2,7 @@ import { memo } from "react";
 import { MatchResponse } from "@/libs/types";
 import Local from "./Teams/Local";
 import Visitor from "./Teams/Visitor";
+import EmptyState from "@/components/EmptyState";
 import styles from "./index.module.scss";
 
 const PlayersContent = (props: { data: MatchResponse["results"] }) => {
@@ -10,11 +11,7 @@ const PlayersContent = (props: { data: MatchResponse["results"] }) => {
   const visitorTeam = data.away.teamsheet;
 
   if (!localTeam.length && !visitorTeam.length) {
-    return (
-      <div className={styles.empty}>
-        Sorry, the composition is not available...
-      </div>
-    );
+    return <EmptyState text="Sorry, the composition is not available..." />;
   }
 
   return (
