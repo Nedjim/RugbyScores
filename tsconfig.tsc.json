@@ -1,13 +1,7 @@
 {
   "extends": "./tsconfig.json",
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    ".next"
-  ],
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", ".next"],
   "compilerOptions": {
     "noEmit": true
   }

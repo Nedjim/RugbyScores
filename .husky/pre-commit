@@ -1,0 +1,13 @@
+#!/bin/sh
+
+echo "🚀 Pre-commit hook started"
+
+# Format staged files using lint-staged
+pnpm format:staged
+
+if [ $? -ne 0 ]; then
+  echo "❌ Formatting failed. Commit aborted."
+  exit 1
+fi
+
+echo "✅ Formatting successful. Commit allowed 🚀"

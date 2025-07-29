@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo "🚀 Pre-push hook started"
+
+# Run build, lint and typecheck checks
+pnpm check
+if [ $? -ne 0 ]; then
+  echo "❌ Check failed (build/lint/typecheck). Push aborted."
+  exit 1
+fi
+
+echo "✅ All checks passed. Push allowed 🚀"
