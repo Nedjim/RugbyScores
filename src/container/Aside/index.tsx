@@ -15,8 +15,8 @@ import CompetitionsDatePicker from "@/components/DatePickers/Competitions";
 import CompetitionFilter from "./CompetitionFilter";
 import TeamFilter from "./TeamFilter";
 import StatusFilter from "./StatusFilter";
-import styles from "./index.module.scss";
 import Loading from "@/app/loading";
+import styles from "./index.module.scss";
 
 const Aside = () => {
   const pathname = usePathname();
@@ -52,11 +52,11 @@ const Aside = () => {
           {pathname?.includes("/matches-day") && (
             <>
               <MatchesDayDatePicker />
-              <Divider sx={{ margin: "32px 0" }}>Filters</Divider>
               <Suspense fallback={<Loading />}>
+                <Divider sx={{ margin: "32px 0" }}>Filters</Divider>
                 <MatchesDayFilters />
+                <StatusFilter />
               </Suspense>
-              <StatusFilter />
             </>
           )}
         </div>

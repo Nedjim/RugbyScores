@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 import { Roboto, Smooch_Sans } from "next/font/google";
 
+export const URL_DATA_FILTER_FORMAT = "DD-MM-YYYY";
+
 export const roboto = Roboto({
   weight: "300",
   display: "swap",

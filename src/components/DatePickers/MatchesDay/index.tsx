@@ -5,10 +5,10 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { URL_DATA_FILTER_FORMAT } from "@/utils";
 import { getDateFilter } from "@/libs/hooks";
 
 const DATE_FORMAT = "DD/MM/YYYY";
-const URL_DATA_FILTER_FORMAT = "DD-MM-YYYY";
 
 const MatchesDay = () => {
   const pathname = usePathname();

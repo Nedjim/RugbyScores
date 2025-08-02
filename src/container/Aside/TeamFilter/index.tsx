@@ -40,6 +40,10 @@ function TeamFilter(props: { data: Match[] }) {
     [pathname, searchParams, router],
   );
 
+  if (!items.length) {
+    return null;
+  }
+
   return <SelectFilter items={items} onChange={handleChange} value="team" />;
 }
 
