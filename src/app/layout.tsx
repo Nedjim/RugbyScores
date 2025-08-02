@@ -4,6 +4,7 @@ import { memo, Suspense } from "react";
 import { roboto } from "@/utils";
 import Header from "@/container/Header";
 import Aside from "@/container/Aside";
+import Footer from "@/container/Footer";
 import Providers from "./provider";
 import styles from "./index.module.scss";
 
@@ -23,6 +24,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
                 <div className={styles.children}>{children}</div>
               </Suspense>
             </main>
+            <Footer />
           </Providers>
         </div>
       </body>

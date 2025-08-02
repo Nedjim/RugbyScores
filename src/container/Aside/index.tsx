@@ -49,7 +49,7 @@ const Aside = () => {
       {isExpended && (
         <div className={styles.filters}>
           {pathname?.includes("/competitions") && <CompetitionsDatePicker />}
-          {pathname?.includes("/matches-day") && (
+          {pathname?.includes("/live") && (
             <>
               <MatchesDayDatePicker />
               <Suspense fallback={<Loading />}>

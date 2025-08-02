@@ -36,7 +36,7 @@ const About = () => {
       </div>
       <div className={styles.networks}>
         <Link
-          href="https://www.linkedin.com/in/nedjimdn/"
+          href="https://www.linkedin.com/in/nedjimdn"
           passHref={true}
           target="_blank"
         >

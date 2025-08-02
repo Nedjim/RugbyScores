@@ -1,0 +1,35 @@
+.footer {
+  background: #04201b;
+  color: #ffffffcc;
+  padding: 8px;
+  text-align: center;
+  font-size: 12px;
+
+  .rugbyEmoticon {
+    padding-right: 8px;
+  }
+
+  .networks {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+
+    a {
+      text-decoration: none;
+      color: #ffffffcc;
+
+      &:hover {
+        color: rgb(5, 165, 150);
+        text-decoration: underline;
+      }
+
+      &::after {
+        content: "|";
+        padding-left: 16px;
+      }
+      &:last-child::after {
+        content: "";
+      }
+    }
+  }
+}

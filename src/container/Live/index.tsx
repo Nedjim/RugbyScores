@@ -10,7 +10,7 @@ import styles from "./index.module.scss";
 import dayjs, { Dayjs } from "dayjs";
 import { URL_DATA_FILTER_FORMAT } from "@/utils";
 
-const MatchesDay = () => {
+const Live = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -52,4 +52,4 @@ const MatchesDay = () => {
   );
 };
 
-export default memo(MatchesDay);
+export default memo(Live);

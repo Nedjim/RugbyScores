@@ -26,11 +26,11 @@ const Header = () => {
           Competitions
         </Link>
         <Link
-          href="/matches-day"
-          className={clsx(isActive("/matches-day") && styles.active)}
+          href="/live"
+          className={clsx(isActive("/live") && styles.active)}
           prefetch={false}
         >
-          Matches day
+          Live
         </Link>
         <Link
           href="/about-me"
