@@ -10,8 +10,6 @@ import { faFilter } from "@fortawesome/free-solid-svg-icons/faFilter";
 import { getDateFilter, useMatchesByDate } from "@/libs/hooks";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MatchesDayDatePicker from "@/components/DatePickers/MatchesDay";
-import CompetitionsDatePicker from "@/components/DatePickers/Competitions";
 import CompetitionFilter from "./CompetitionFilter";
 import TeamFilter from "./TeamFilter";
 import StatusFilter from "./StatusFilter";
@@ -48,16 +46,11 @@ const Aside = () => {
       </div>
       {isExpended && (
         <div className={styles.filters}>
-          {pathname?.includes("/competitions") && <CompetitionsDatePicker />}
           {pathname?.includes("/live") && (
-            <>
-              <MatchesDayDatePicker />
-              <Suspense fallback={<Loading />}>
-                <Divider sx={{ margin: "32px 0" }}>Filters</Divider>
-                <MatchesDayFilters />
-                <StatusFilter />
-              </Suspense>
-            </>
+            <Suspense fallback={<Loading />}>
+              <FiltersTitle />
+              <LiveFilters />
+            </Suspense>
           )}
         </div>
       )}
@@ -65,7 +58,15 @@ const Aside = () => {
   );
 };
 
-const MatchesDayFilters = () => {
+const FiltersTitle = () => {
+  return (
+    <div>
+      <Divider sx={{ marginBottom: "16px" }}>Filters</Divider>
+    </div>
+  );
+};
+
+const LiveFilters = () => {
   const searchParams = useSearchParams();
   const date = getDateFilter(searchParams?.get("date"));
   const { data } = useMatchesByDate(date);
@@ -74,6 +75,7 @@ const MatchesDayFilters = () => {
     <>
       <CompetitionFilter data={data} />
       <TeamFilter data={data} />
+      <StatusFilter />
     </>
   );
 };

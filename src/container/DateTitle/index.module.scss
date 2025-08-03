@@ -1,0 +1,20 @@
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 16px;
+
+  h3 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  svg {
+    padding: 2px;
+    margin-left: 8px;
+    font-size: 14px;
+  }
+}
