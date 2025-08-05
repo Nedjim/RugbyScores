@@ -1,10 +1,13 @@
 "use client";
 import { DatePickerProps } from "@mui/x-date-pickers/DatePicker";
-import ChevronButton from "../../components/ChevronButton";
 import dynamic from "next/dynamic";
 import styles from "./index.module.scss";
 
 const CalendarButton = dynamic(() => import("@/components/CalendarButton"), {
+  ssr: false,
+});
+
+const ChevronButton = dynamic(() => import("@/components/ChevronButton"), {
   ssr: false,
 });
 

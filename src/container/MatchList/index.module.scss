@@ -1,11 +1,10 @@
 .matchList {
   display: flex;
+  flex-wrap: wrap;
   flex: 1;
   justify-content: center;
-  flex-wrap: wrap;
   overflow: scroll;
-  padding-top: 8px;
-  padding-bottom: 40px;
+  padding: 16px;
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;

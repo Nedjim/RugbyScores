@@ -9,7 +9,7 @@ import styles from "./index.module.scss";
 const About = () => {
   return (
     <div className={styles.about}>
-      <h2 className={styles.title}>About me</h2>
+      <h3 className={styles.title}>About me</h3>
       <div className={styles.description}>
         <section className={styles.section}>
           <p>Hi !</p>

@@ -5,7 +5,6 @@ import { memo, Suspense } from "react";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { roboto } from "@/utils";
 import Header from "@/container/Header";
-import Aside from "@/container/Aside";
 import Footer from "@/container/Footer";
 import Providers from "./provider";
 import styles from "./index.module.scss";
@@ -29,7 +28,6 @@ function RootLayout({ children }: { children: React.ReactNode }) {
           <EmotionProvider>
             <Providers>
               <main className={`${styles.main} ${roboto.className}`}>
-                <Aside />
                 <Suspense fallback={<Loading />}>
                   <div className={styles.children}>{children}</div>
                 </Suspense>

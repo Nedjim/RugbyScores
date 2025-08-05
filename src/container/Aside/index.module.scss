@@ -1,79 +1,26 @@
 .aside {
   display: flex;
   flex-direction: column;
-  padding-top: 40px;
-  box-shadow:
-    rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
-    rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  padding: 32px 16px;
+  gap: 16px;
 
-  &.fullWidth {
-    width: 100%;
+  @media only screen and (min-width: 640px) {
+    padding: 12px 16px;
+    width: 250px;
 
-    @media only screen and (min-width: 640px) {
-      width: min-content;
+    .dividerPresentation {
+      margin-top: 34px;
     }
   }
 
-  .showFiltersPanel {
+  .title {
     display: flex;
-    align-items: center;
-    color: #0a6d63;
-    margin-bottom: 16px;
-    z-index: 140;
-    margin-left: 24px;
     gap: 8px;
-
-    svg {
-      width: 16px;
-      &:last-child {
-        width: 12px;
-      }
-    }
+    margin: 0;
+    color: #06433d;
 
     @media only screen and (min-width: 640px) {
-      .clearButton {
-        display: none;
-      }
-
-      &.expended {
-        .clearButton {
-          display: block;
-        }
-      }
-    }
-
-    span {
-      margin-left: 14px;
-      font-size: 14px;
-      @media only screen and (min-width: 640px) {
-        display: none;
-      }
-    }
-  }
-
-  .filters {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 16px;
-    background: white;
-    z-index: 100;
-    width: -webkit-fill-available;
-    box-shadow:
-      rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
-      rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-
-    h3 {
-      font-weight: 300;
-      margin: 0;
-      padding-bottom: 8px;
-    }
-
-    @media only screen and (min-width: 640px) {
-      padding: 24px 24px 0 24px;
-      flex: 1;
-      width: 230px;
-      background: inherit;
+      margin: 16px 0;
     }
   }
 }

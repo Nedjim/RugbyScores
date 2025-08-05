@@ -1,7 +1,17 @@
-.content {
+.liveContainer {
   display: flex;
   flex: 1;
   flex-direction: column;
-  overflow: scroll;
-  padding-top: 26px;
+  margin-top: 8px;
+  overflow: hidden;
+
+  @media only screen and (min-width: 640px) {
+    flex-direction: row;
+  }
+
+  .content {
+    flex: 1;
+    margin-top: 16px;
+    overflow: scroll;
+  }
 }

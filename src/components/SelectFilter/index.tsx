@@ -37,11 +37,9 @@ function SelectFilter(props: {
   return (
     <div className={styles.selectFilter}>
       <FormControl fullWidth>
-        <InputLabel size="small">
-          <span>{value}</span>
-        </InputLabel>
+        <InputLabel size="medium">{value}</InputLabel>
         <Select
-          size="small"
+          size="medium"
           labelId={`select-${value}`}
           value={queryFilter}
           label={value}

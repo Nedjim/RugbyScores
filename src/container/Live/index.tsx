@@ -10,6 +10,7 @@ import Matches from "@/container/MatchList";
 import DateTitle from "../DateTitle";
 import EmptyState from "@/components/EmptyState";
 import styles from "./index.module.scss";
+import Aside from "../Aside";
 
 const DATE_FORMAT = "DD/MM/YYYY";
 
@@ -49,24 +50,27 @@ const Live = () => {
   );
 
   return (
-    <div className={styles.content}>
-      <DateTitle
-        title={date.format("LL")}
-        onPrevious={() => {
-          const previous = date.subtract(1, "day");
-          handleChangeDate(previous);
-        }}
-        onNext={() => {
-          const next = date.add(1, "day");
-          handleChangeDate(next);
-        }}
-        datePickerConfig={datePickerConfig}
-      />
-      {!matches.length ? (
-        <EmptyState text="Please adjust your filters. No results were found for this journey." />
-      ) : (
-        <Matches data={matches} />
-      )}
+    <div className={styles.liveContainer}>
+      {!!matches.length && <Aside />}
+      <div className={styles.content}>
+        <DateTitle
+          title={date.format("LL")}
+          onPrevious={() => {
+            const previous = date.subtract(1, "day");
+            handleChangeDate(previous);
+          }}
+          onNext={() => {
+            const next = date.add(1, "day");
+            handleChangeDate(next);
+          }}
+          datePickerConfig={datePickerConfig}
+        />
+        {!matches.length ? (
+          <EmptyState text="Please adjust your filters. No results were found for this journey." />
+        ) : (
+          <Matches data={matches} />
+        )}
+      </div>
     </div>
   );
 };
