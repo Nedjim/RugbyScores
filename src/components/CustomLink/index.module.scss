@@ -1,6 +1,15 @@
 .customLink {
   padding: 8px 12px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  transition-duration: 0.4s;
+  border-radius: 8px;
+
+  &:hover {
+    background: #04201b;
+    color: #ffffffcc;
+    cursor: pointer;
+  }
+
   a {
     text-decoration: none;
     color: inherit;
