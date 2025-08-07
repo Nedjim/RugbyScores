@@ -3,7 +3,10 @@ import { memo, useCallback, useMemo } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { getQueryStringFilter } from "@/utils";
 import { Match } from "@/libs/types";
+import { QueryKeyFilter } from "@/types";
 import SelectFilter from "@/components/SelectFilter";
+
+const QUERY_KEY: QueryKeyFilter = "competition";
 
 function CompetiitonFilter(props: { data: Match[] }) {
   const { data } = props;
@@ -19,8 +22,7 @@ function CompetiitonFilter(props: { data: Match[] }) {
       const { away, home, comp_name } = i;
       if (
         !formattedTeamFilter ||
-        (formattedTeamFilter && formattedTeamFilter === away) ||
-        formattedTeamFilter === home
+        (formattedTeamFilter && [away, home].includes(formattedTeamFilter))
       ) {
         return comp_name;
       }
@@ -32,9 +34,14 @@ function CompetiitonFilter(props: { data: Match[] }) {
 
   const handleChange = useCallback(
     (value: string | null) => {
-      router.push(
-        `${pathname}?${searchParams.toString()}&competition=${value}`,
-      );
+      const isQueryExist = searchParams.get(QUERY_KEY);
+      const search = new URLSearchParams(searchParams.toString());
+
+      if (isQueryExist) {
+        search.delete(QUERY_KEY);
+      }
+
+      router.push(`${pathname}?${search.toString()}&${QUERY_KEY}=${value}`);
     },
     [pathname, searchParams, router],
   );
@@ -44,7 +51,7 @@ function CompetiitonFilter(props: { data: Match[] }) {
   }
 
   return (
-    <SelectFilter items={items} onChange={handleChange} value="competition" />
+    <SelectFilter items={items} onChange={handleChange} queryKey={QUERY_KEY} />
   );
 }
 

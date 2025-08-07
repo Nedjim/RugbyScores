@@ -9,40 +9,40 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-
+import { QueryKeyFilter } from "@/types";
 import { createQueryStringFilter } from "@/utils";
 import styles from "./index.module.scss";
 
 function SelectFilter(props: {
   items: string[];
   onChange: (value: string) => void;
-  value: string;
+  queryKey: QueryKeyFilter;
 }) {
-  const { items, value, onChange } = props;
+  const { items, queryKey, onChange } = props;
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const queryFilter = searchParams?.get(value) || "";
+  const queryFilter = searchParams?.get(queryKey) || "";
 
   const handleClearFilter = useCallback(() => {
-    const isExistingQuery = searchParams.get(value);
+    const isExistingQuery = searchParams.get(queryKey);
 
     if (isExistingQuery) {
       const search = new URLSearchParams(searchParams.toString());
-      search.delete(value);
+      search.delete(queryKey);
       router.push(`${pathname}?${search.toString()}`);
     }
-  }, [pathname, searchParams, router, value]);
+  }, [pathname, searchParams, router, queryKey]);
 
   return (
     <div className={styles.selectFilter}>
       <FormControl fullWidth>
-        <InputLabel size="medium">{value}</InputLabel>
+        <InputLabel size="medium">{queryKey}</InputLabel>
         <Select
           size="medium"
-          labelId={`select-${value}`}
+          labelId={`select-${queryKey}`}
           value={queryFilter}
-          label={value}
+          label={queryKey}
           onChange={(e) => onChange(e.target.value)}
         >
           {items.map((name, key) => {
