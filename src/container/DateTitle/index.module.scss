@@ -2,13 +2,12 @@
   position: sticky;
   top: 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 40px;
   margin-bottom: 16px;
-  padding-bottom: 8px;
   background: white;
   box-shadow: 0px 15px 10px -15px #ececec;
+  padding: 0 16px 8px 16px;
 
   h3 {
     position: relative;
@@ -22,5 +21,11 @@
     padding: 2px;
     margin-left: 8px;
     font-size: 14px;
+  }
+
+  @media only screen and (min-width: 640px) {
+    justify-content: center;
+    gap: 24px;
+    padding: 0 0 8px 0;
   }
 }

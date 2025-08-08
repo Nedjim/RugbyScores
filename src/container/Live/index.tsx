@@ -10,7 +10,7 @@ import Matches from "@/container/MatchList";
 import DateTitle from "../DateTitle";
 import EmptyState from "@/components/EmptyState";
 import styles from "./index.module.scss";
-import Aside from "../Aside";
+import Filters from "./Filters";
 
 const DATE_FORMAT = "DD/MM/YYYY";
 
@@ -51,7 +51,7 @@ const Live = () => {
 
   return (
     <div className={styles.liveContainer}>
-      {!!matches.length && <Aside />}
+      {!!matches.length && <Filters />}
       <div className={styles.content}>
         <DateTitle
           title={date.format("LL")}
