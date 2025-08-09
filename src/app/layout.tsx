@@ -31,8 +31,8 @@ function RootLayout({ children }: { children: React.ReactNode }) {
                 <Suspense fallback={<Loading />}>
                   <div className={styles.children}>{children}</div>
                 </Suspense>
-                <Footer />
               </main>
+              <Footer />
             </Providers>
           </EmotionProvider>
         </div>

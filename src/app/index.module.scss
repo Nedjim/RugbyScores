@@ -7,10 +7,10 @@
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
+  min-height: 100dvh;
 
   .main {
     display: flex;
-    flex-direction: column;
     flex: 1;
     overflow: hidden;
 
