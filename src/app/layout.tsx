@@ -32,9 +32,9 @@ function RootLayout({ children }: { children: React.ReactNode }) {
                   <div className={styles.children}>{children}</div>
                 </Suspense>
               </main>
-              <Footer />
             </Providers>
           </EmotionProvider>
+          <Footer />
         </div>
       </body>
     </html>
