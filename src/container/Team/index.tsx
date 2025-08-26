@@ -26,7 +26,19 @@ const Team = () => {
           String(season) === seasonFilter && String(comp_id) === compIdParam
         );
       })
-      .reverse();
+      .sort((a, b) => {
+        const dateA = dayjs(a.date);
+        const dateB = dayjs(b.date);
+
+        if (dateA.isBefore(dateB)) {
+          return -1;
+        }
+        if (dateA.isAfter(dateB)) {
+          return 1;
+        }
+
+        return 0;
+      });
   }, [data, seasonFilter, compIdParam]);
 
   return (

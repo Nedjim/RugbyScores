@@ -1,5 +1,5 @@
 "use client";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons/faAngleLeft";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTeamsByCompetitionSeason } from "@/libs/hooks";
@@ -17,6 +17,19 @@ const Competition = () => {
 
   const { data } = useTeamsByCompetitionSeason(season, compId);
 
+  const sortedDate = useMemo(() => {
+    return data.sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+
+      return 0;
+    });
+  }, [data]);
+
   return (
     <div className={styles.competition}>
       <Link
@@ -30,10 +43,10 @@ const Competition = () => {
         <span>All competitions</span>
       </Link>
 
-      {!data.length ? (
+      {!sortedDate.length ? (
         <EmptyState text="Sorry, teams are not available... " />
       ) : (
-        <CustomLinks links={data} />
+        <CustomLinks links={sortedDate} />
       )}
     </div>
   );

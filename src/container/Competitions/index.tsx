@@ -29,7 +29,18 @@ const Competitions = () => {
   }, [seasonFilter]);
 
   const currentCompetitions = useMemo(() => {
-    return data.filter((c) => c.season === Number(seasonFilter));
+    return data
+      .filter((c) => c.season === Number(seasonFilter))
+      .sort((a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
+
+        return 0;
+      });
   }, [data, seasonFilter]);
 
   const datePickerConfig: DatePickerProps = useMemo(() => {
