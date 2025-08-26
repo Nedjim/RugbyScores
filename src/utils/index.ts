@@ -7,6 +7,7 @@ export const roboto = Roboto({
   weight: "300",
   display: "swap",
   subsets: ["latin"],
+  variable: "--font-roboto",
 });
 
 export const smooch = Smooch_Sans({

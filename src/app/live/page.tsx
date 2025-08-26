@@ -1,8 +1,6 @@
 import { memo, Suspense } from "react";
-import dynamic from "next/dynamic";
-
-const Loading = dynamic(() => import("@/app/loading"));
-const Live = dynamic(() => import("@/container/Live"));
+import Loading from "@/app/loading";
+import Live from "@/container/Live";
 
 const MatchesDayPage = async () => {
   return (

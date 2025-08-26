@@ -1,8 +1,6 @@
 import { Suspense } from "react";
-import dynamic from "next/dynamic";
-
-const Loading = dynamic(() => import("@/app/loading"));
-const Team = dynamic(() => import("@/container/Team"));
+import Loading from "@/app/loading";
+import Team from "@/container/Team";
 
 const TeamPage = async () => {
   return (

@@ -1,8 +1,6 @@
-import dynamic from "next/dynamic";
 import { Suspense } from "react";
-
-const Loading = dynamic(() => import("@/app/loading"));
-const Competitions = dynamic(() => import("@/container/Competitions"));
+import Loading from "@/app/loading";
+import Competitions from "@/container/Competitions";
 
 const CompetitionsPage = async () => {
   return (

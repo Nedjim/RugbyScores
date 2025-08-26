@@ -1,15 +1,9 @@
 "use client";
 import { DatePickerProps } from "@mui/x-date-pickers/DatePicker";
-import dynamic from "next/dynamic";
 import styles from "./index.module.scss";
-
-const CalendarButton = dynamic(() => import("@/components/CalendarButton"), {
-  ssr: false,
-});
-
-const ChevronButton = dynamic(() => import("@/components/ChevronButton"), {
-  ssr: false,
-});
+import ChevronButton from "@/components/ChevronButton";
+import CalendarButton from "@/components/CalendarButton";
+import { memo } from "react";
 
 const DateTitle = (props: {
   title: string;
@@ -20,14 +14,14 @@ const DateTitle = (props: {
   const { title, onPrevious, onNext, datePickerConfig } = props;
 
   return (
-    <div className={styles.title}>
+    <div className={styles.content}>
       <ChevronButton direction="left" onClick={onPrevious} />
-      <h3>
-        <span>{title}</span>
+      <div className={styles.title}>
+        <h3>{title}</h3>
         <CalendarButton config={datePickerConfig} />
-      </h3>
+      </div>
       <ChevronButton direction="right" onClick={onNext} />
     </div>
   );
 };
-export default DateTitle;
+export default memo(DateTitle);

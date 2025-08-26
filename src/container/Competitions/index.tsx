@@ -35,15 +35,15 @@ const Competitions = () => {
   const datePickerConfig: DatePickerProps = useMemo(() => {
     const seasonFilter = searchParams.get("season");
     const value = dayjs().year(Number(seasonFilter) || season);
-    const minYear = dayjs(new Date(MIN_YEAR));
-    const maxYear = dayjs().add(1, "year");
+    const minDate = dayjs(new Date(MIN_YEAR));
+    const maxDate = dayjs().add(1, "year");
 
     return {
       value,
       yearsOrder: "desc",
       views: ["year"],
-      minDate: minYear,
-      maxDate: maxYear,
+      minDate,
+      maxDate,
       onChange: (value: Dayjs | null) => {
         if (!value) {
           router.push(pathname);

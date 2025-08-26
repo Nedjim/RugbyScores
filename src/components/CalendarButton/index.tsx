@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { memo, useRef, useState } from "react";
 import { DatePicker, DatePickerProps } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -13,7 +13,13 @@ function CalendarButton(props: { config: DatePickerProps }) {
 
   return (
     <>
-      <IconButton ref={buttonRef} onClick={() => setOpen(true)} size="small">
+      <IconButton
+        ref={buttonRef}
+        onClick={() => setOpen(true)}
+        size="small"
+        id="calendar-button"
+        disabled={false}
+      >
         <Image
           width={23}
           height={23}
@@ -41,4 +47,4 @@ function CalendarButton(props: { config: DatePickerProps }) {
   );
 }
 
-export default CalendarButton;
+export default memo(CalendarButton);

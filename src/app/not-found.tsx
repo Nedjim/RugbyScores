@@ -1,7 +1,5 @@
-import dynamic from "next/dynamic";
 import { Suspense } from "react";
-
-const Loading = dynamic(() => import("@/app/loading"));
+import Loading from "@/app/loading";
 
 const NotFound = () => {
   return (
