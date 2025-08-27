@@ -1,6 +1,6 @@
 "use client";
 import dayjs, { Dayjs } from "dayjs";
-import { memo, useCallback, useMemo } from "react";
+import { memo, useCallback, useDeferredValue, useMemo, useState } from "react";
 import { useCompetitions, useCurrentSeason } from "@/libs/hooks";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { DatePickerProps } from "@mui/x-date-pickers/DatePicker";
@@ -17,6 +17,8 @@ const Competitions = () => {
   const router = useRouter();
   const season = useCurrentSeason();
   const { data } = useCompetitions();
+  const [search, setSearch] = useState("");
+  const deferredSearch = useDeferredValue(search);
 
   const seasonFilter = useMemo(() => {
     const seasonFilter = searchParams.get("season");
@@ -28,8 +30,8 @@ const Competitions = () => {
     return `Competitions - ${seasonFilter}`;
   }, [seasonFilter]);
 
-  const currentCompetitions = useMemo(() => {
-    return data
+  const filteredCompetitions = useMemo(() => {
+    const res = data
       .filter((c) => c.season === Number(seasonFilter))
       .sort((a, b) => {
         if (a.name < b.name) {
@@ -41,6 +43,8 @@ const Competitions = () => {
 
         return 0;
       });
+
+    return res;
   }, [data, seasonFilter]);
 
   const datePickerConfig: DatePickerProps = useMemo(() => {
@@ -66,6 +70,16 @@ const Competitions = () => {
     };
   }, [router, searchParams, pathname, season]);
 
+  const searchResults = useMemo(() => {
+    if (!deferredSearch) {
+      return filteredCompetitions;
+    }
+
+    return filteredCompetitions.filter((e) =>
+      e.name.toLowerCase().includes(deferredSearch.toLowerCase()),
+    );
+  }, [filteredCompetitions, deferredSearch]);
+
   const handleChangeDate = useCallback(
     (year: number) => {
       router.push(`${pathname}?season=${year}`);
@@ -86,11 +100,13 @@ const Competitions = () => {
           handleChangeDate(next);
         }}
         datePickerConfig={datePickerConfig}
+        search={search}
+        setSearch={setSearch}
       />
-      {!currentCompetitions.length ? (
+      {!searchResults.length ? (
         <EmptyState />
       ) : (
-        <CustomLinks links={currentCompetitions} />
+        <CustomLinks links={searchResults} />
       )}
     </div>
   );

@@ -1,0 +1,17 @@
+.search {
+  display: none;
+
+  @media only screen and (min-width: 640px) {
+    display: block;
+    position: absolute;
+    display: block;
+    left: 40px;
+
+    .icon {
+      height: 20px;
+      width: 20px;
+      color: #05201b;
+      margin-right: 8px;
+    }
+  }
+}

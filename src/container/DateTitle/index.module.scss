@@ -1,4 +1,4 @@
-.content {
+.dateFilter {
   position: sticky;
   top: 0;
   display: flex;
@@ -8,6 +8,10 @@
   background: white;
   box-shadow: 0px 15px 10px -15px #ececec;
   padding: 0 16px 8px 16px;
+
+  .search {
+    display: none;
+  }
 
   .title {
     position: relative;
@@ -29,6 +33,6 @@
   @media only screen and (min-width: 640px) {
     justify-content: center;
     gap: 24px;
-    padding: 0 0 8px 0;
+    padding: 4px 0 16px 0;
   }
 }

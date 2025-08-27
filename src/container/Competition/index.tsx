@@ -14,7 +14,6 @@ const Competition = () => {
   const params = useParams();
   const compId = params.compId as string;
   const season = searchParams.get("season") as string;
-
   const { data } = useTeamsByCompetitionSeason(season, compId);
 
   const sortedDate = useMemo(() => {

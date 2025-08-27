@@ -1,20 +1,25 @@
 "use client";
+import { memo } from "react";
 import { DatePickerProps } from "@mui/x-date-pickers/DatePicker";
-import styles from "./index.module.scss";
+import Search from "@/components/Search";
 import ChevronButton from "@/components/ChevronButton";
 import CalendarButton from "@/components/CalendarButton";
-import { memo } from "react";
+import styles from "./index.module.scss";
 
 const DateTitle = (props: {
   title: string;
   onPrevious: () => void;
   onNext: () => void;
   datePickerConfig: DatePickerProps;
+  search: string;
+  setSearch?: (key: string) => void;
 }) => {
-  const { title, onPrevious, onNext, datePickerConfig } = props;
+  const { title, onPrevious, onNext, datePickerConfig, search, setSearch } =
+    props;
 
   return (
-    <div className={styles.content}>
+    <div className={styles.dateFilter}>
+      {setSearch && <Search value={search} setValue={setSearch} />}
       <ChevronButton direction="left" onClick={onPrevious} />
       <div className={styles.title}>
         <h3>{title}</h3>
