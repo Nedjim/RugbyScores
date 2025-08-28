@@ -1,12 +1,10 @@
 "use client";
 import { memo, useMemo } from "react";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons/faAngleLeft";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTeamsByCompetitionSeason } from "@/libs/hooks";
 import { useParams, useSearchParams } from "next/navigation";
 import EmptyState from "@/components/EmptyState";
-import Link from "next/link";
 import CustomLinks from "../CustomLinks";
+import BackLink from "@/components/BackLink";
 import styles from "./index.module.scss";
 
 const Competition = () => {
@@ -31,17 +29,15 @@ const Competition = () => {
 
   return (
     <div className={styles.competition}>
-      <Link
-        href={{
-          pathname: "/competitions",
-          query: { season },
-        }}
-        className={styles.backLink}
-      >
-        <FontAwesomeIcon icon={faAngleLeft} />
-        <span>All competitions</span>
-      </Link>
-
+      <div className={styles.navigation}>
+        <BackLink
+          href={{
+            pathname: "/competitions",
+            query: { season },
+          }}
+          label="All competitions"
+        />
+      </div>
       {!sortedDate.length ? (
         <EmptyState text="Sorry, teams are not available... " />
       ) : (

@@ -11,7 +11,7 @@ const DateTitle = (props: {
   onPrevious: () => void;
   onNext: () => void;
   datePickerConfig: DatePickerProps;
-  search: string;
+  search?: string;
   setSearch?: (key: string) => void;
 }) => {
   const { title, onPrevious, onNext, datePickerConfig, search, setSearch } =
@@ -19,7 +19,7 @@ const DateTitle = (props: {
 
   return (
     <div className={styles.dateFilter}>
-      {setSearch && <Search value={search} setValue={setSearch} />}
+      {setSearch && search && <Search value={search} setValue={setSearch} />}
       <ChevronButton direction="left" onClick={onPrevious} />
       <div className={styles.title}>
         <h3>{title}</h3>

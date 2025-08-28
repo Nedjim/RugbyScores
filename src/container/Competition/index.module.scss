@@ -4,15 +4,11 @@
   flex-direction: column;
   overflow: hidden;
 
-  .backLink {
-    padding: 40px 40px 16px 40px;
+  .navigation {
     display: flex;
-    gap: 16px;
-    text-decoration: none;
-    color: inherit;
-
-    &:hover {
-      color: #03a696;
-    }
+    overflow: hidden;
+    align-items: center;
+    padding: 16px 40px 16px 40px;
+    justify-content: space-between;
   }
 }

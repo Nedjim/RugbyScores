@@ -1,0 +1,19 @@
+.backLink {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: #03a696;
+  }
+
+  .label {
+    display: none;
+
+    @media only screen and (min-width: 640px) {
+      display: block;
+    }
+  }
+}
