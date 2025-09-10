@@ -20,11 +20,9 @@ const Team = () => {
   const filteredData = useMemo(() => {
     return data
       .filter((i) => {
-        const { date, comp_id } = i;
-        const season = dayjs(date).year();
-        return (
-          String(season) === seasonFilter && String(comp_id) === compIdParam
-        );
+        const { season, comp_id } = i;
+
+        return season === seasonFilter && String(comp_id) === compIdParam;
       })
       .sort((a, b) => {
         const dateA = dayjs(a.date);

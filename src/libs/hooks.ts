@@ -10,7 +10,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { getQueryDateFilter } from "../utils";
 
 export const useCurrentSeason = () => {
-  return dayjs(new Date()).year();
+  return dayjs(new Date()).add(1, "year").year();
 };
 
 export const getDateFilter = (date?: string | null) => {
