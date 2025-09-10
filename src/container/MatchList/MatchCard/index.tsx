@@ -40,22 +40,18 @@ const MatchCard = (props: { match: Match }) => {
     <div className={styles.card}>
       <MatchCardHeader match={match} />
       <div className={styles.body}>
-        <div className={styles.team}>
-          <span>{home}</span>
-          <Score
-            value={homeScore}
-            success={homeScore > awayScore}
-            isHidden={!shouldDisplayScores}
-          />
-        </div>
-        <div className={styles.team}>
-          <span>{away}</span>
-          <Score
-            value={awayScore}
-            success={awayScore > homeScore}
-            isHidden={!shouldDisplayScores}
-          />
-        </div>
+        <Score
+          value={homeScore}
+          success={homeScore > awayScore}
+          isHidden={!shouldDisplayScores}
+          teamName={home}
+        />
+        <Score
+          value={awayScore}
+          success={awayScore > homeScore}
+          isHidden={!shouldDisplayScores}
+          teamName={away}
+        />
         <div className={styles.actions}>
           <ActionButton
             type="result"

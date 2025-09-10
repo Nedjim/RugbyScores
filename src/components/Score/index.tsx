@@ -6,17 +6,17 @@ type ScoreType = {
   value: number;
   success: boolean;
   isHidden: boolean;
+  teamName: string;
 };
 
 const Score = (props: ScoreType) => {
-  const { value, success, isHidden } = props;
+  const { value, success, isHidden, teamName } = props;
 
   return (
-    <span
-      className={clsx(styles.score, success && !isHidden && styles.success)}
-    >
-      {isHidden ? "x" : value}
-    </span>
+    <div className={clsx(styles.score, success && !isHidden && styles.success)}>
+      <div>{teamName}</div>
+      <div className={clsx(styles.result)}>{isHidden ? "x" : value}</div>
+    </div>
   );
 };
 

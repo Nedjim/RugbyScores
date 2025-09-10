@@ -16,7 +16,11 @@ function FilterButton(props: FilterButtonProps) {
       variant={isActive ? "contained" : "outlined"}
       onClick={onClick}
       size="small"
-      sx={isActive ? { background: "#05201b", color: "#7fffd4" } : {}}
+      sx={
+        isActive
+          ? { background: "var(--dark-green)", color: "var(--light-green)" }
+          : {}
+      }
     >
       {label}
     </Button>

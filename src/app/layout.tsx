@@ -6,6 +6,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { roboto } from "@/utils";
 import Providers from "./providers";
 import styles from "./index.module.scss";
+import "../styles/globals.scss";
 
 /* 
 Disable automatic CSS injection from FontAwesome to prevent style duplication

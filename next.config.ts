@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
@@ -11,6 +12,10 @@ const baseConfig: NextConfig = {
   ],
   images: {
     domains: ["img.icons8.com"],
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, "src")],
+    additionalData: `@use "styles/variables.scss" as *;`,
   },
 };
 

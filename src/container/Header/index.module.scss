@@ -1,4 +1,4 @@
-$background: #05201b;
+// @use '../../styles/variables';
 
 .header {
   position: sticky;
@@ -8,7 +8,7 @@ $background: #05201b;
   justify-content: space-between;
   align-items: center;
   padding: 8px 0;
-  background: $background;
+  background: $dark_green;
   color: white;
   box-shadow:
     rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,

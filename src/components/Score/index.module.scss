@@ -1,10 +1,15 @@
 .score {
-  padding: 4px;
-  border-radius: 10px;
-  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
 
   &.success {
-    background: green;
-    color: white;
+    font-weight: bold;
+    color: $medium_green;
+  }
+
+  .result {
+    padding: 4px;
+    border-radius: 10px;
+    font-size: 14px;
   }
 }
