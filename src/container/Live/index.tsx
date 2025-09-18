@@ -1,6 +1,5 @@
 "use client";
 import dayjs, { Dayjs } from "dayjs";
-import { memo, useCallback, useMemo } from "react";
 import { getDateFilter, useMatchesByDate } from "@/libs/hooks";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { matchesFilter } from "@/utils/filters";
@@ -21,33 +20,25 @@ const Live = () => {
   const date = getDateFilter(searchParams?.get("date"));
   const { data } = useMatchesByDate(date);
 
-  const matches = useMemo(
-    () => (data ? matchesFilter({ data, searchParams }) : []),
-    [searchParams, data],
-  );
+  const matches = data ? matchesFilter({ data, searchParams }) : [];
 
-  const datePickerConfig: DatePickerProps = useMemo(() => {
-    return {
-      format: DATE_FORMAT,
-      value: date,
-      onChange: (value: Dayjs | null) => {
-        if (!value) {
-          router.push(pathname);
-          return;
-        }
-        const dateQuery = String(dayjs(value).format(URL_DATA_FILTER_FORMAT));
-        router.push(`${pathname}?date=${dateQuery}`);
-      },
-    };
-  }, [date, router, pathname]);
-
-  const handleChangeDate = useCallback(
-    (date: Dayjs) => {
-      const dateQuery = String(dayjs(date).format(URL_DATA_FILTER_FORMAT));
+  const datePickerConfig: DatePickerProps = {
+    format: DATE_FORMAT,
+    value: date,
+    onChange: (value: Dayjs | null) => {
+      if (!value) {
+        router.push(pathname);
+        return;
+      }
+      const dateQuery = String(dayjs(value).format(URL_DATA_FILTER_FORMAT));
       router.push(`${pathname}?date=${dateQuery}`);
     },
-    [pathname, router],
-  );
+  };
+
+  const handleChangeDate = (date: Dayjs) => {
+    const dateQuery = String(dayjs(date).format(URL_DATA_FILTER_FORMAT));
+    router.push(`${pathname}?date=${dateQuery}`);
+  };
 
   return (
     <div className={styles.liveContainer}>
@@ -75,4 +66,4 @@ const Live = () => {
   );
 };
 
-export default memo(Live);
+export default Live;

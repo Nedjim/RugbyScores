@@ -1,5 +1,4 @@
 "use client";
-import { memo, useCallback, useMemo } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { getQueryStringFilter } from "@/utils";
 import { Match } from "@/libs/types";
@@ -14,10 +13,10 @@ function CompetiitonFilter(props: { data: Match[] }) {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const items = useMemo(() => {
-    const teamFilter = searchParams.get("team");
-    const formattedTeamFilter = getQueryStringFilter(teamFilter);
+  const teamFilter = searchParams.get("team");
+  const formattedTeamFilter = getQueryStringFilter(teamFilter);
 
+  const getItems = () => {
     const elements = data?.map((i) => {
       const { away, home, comp_name } = i;
       if (
@@ -30,29 +29,30 @@ function CompetiitonFilter(props: { data: Match[] }) {
     });
 
     return [...new Set(elements)].filter((e) => e).sort();
-  }, [data, searchParams]);
+  };
 
-  const handleChange = useCallback(
-    (value: string | null) => {
-      const isQueryExist = searchParams.get(QUERY_KEY);
-      const search = new URLSearchParams(searchParams.toString());
+  const handleChange = (value: string | null) => {
+    const isQueryExist = searchParams.get(QUERY_KEY);
+    const search = new URLSearchParams(searchParams.toString());
 
-      if (isQueryExist) {
-        search.delete(QUERY_KEY);
-      }
+    if (isQueryExist) {
+      search.delete(QUERY_KEY);
+    }
 
-      router.push(`${pathname}?${search.toString()}&${QUERY_KEY}=${value}`);
-    },
-    [pathname, searchParams, router],
-  );
+    router.push(`${pathname}?${search.toString()}&${QUERY_KEY}=${value}`);
+  };
 
-  if (!items.length) {
+  if (!getItems().length) {
     return null;
   }
 
   return (
-    <SelectFilter items={items} onChange={handleChange} queryKey={QUERY_KEY} />
+    <SelectFilter
+      items={getItems()}
+      onChange={handleChange}
+      queryKey={QUERY_KEY}
+    />
   );
 }
 
-export default memo(CompetiitonFilter);
+export default CompetiitonFilter;

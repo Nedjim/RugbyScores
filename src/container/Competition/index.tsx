@@ -1,5 +1,4 @@
 "use client";
-import { memo, useMemo } from "react";
 import { useTeamsByCompetitionSeason } from "@/libs/hooks";
 import { useParams, useSearchParams } from "next/navigation";
 import EmptyState from "@/components/EmptyState";
@@ -14,18 +13,16 @@ const Competition = () => {
   const season = searchParams.get("season") as string;
   const { data } = useTeamsByCompetitionSeason(season, compId);
 
-  const sortedDate = useMemo(() => {
-    return data.sort((a, b) => {
-      if (a.name < b.name) {
-        return -1;
-      }
-      if (a.name > b.name) {
-        return 1;
-      }
+  const sortedDate = data.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
 
-      return 0;
-    });
-  }, [data]);
+    return 0;
+  });
 
   return (
     <div className={styles.competition}>
@@ -47,4 +44,4 @@ const Competition = () => {
   );
 };
 
-export default memo(Competition);
+export default Competition;

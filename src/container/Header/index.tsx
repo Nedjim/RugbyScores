@@ -1,6 +1,5 @@
 "use client";
 import clsx from "clsx";
-import { memo } from "react";
 import { smooch } from "@/utils";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -44,4 +43,4 @@ const Header = () => {
   );
 };
 
-export default memo(Header);
+export default Header;

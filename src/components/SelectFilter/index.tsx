@@ -1,6 +1,5 @@
 "use client";
 import clsx from "clsx";
-import { useCallback } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons/faX";
@@ -13,18 +12,20 @@ import { QueryKeyFilter } from "@/types";
 import { createQueryStringFilter } from "@/utils";
 import styles from "./index.module.scss";
 
-const SelectFilter = (props: {
+type SelectFilterPropsType = {
   items: string[];
   onChange: (value: string) => void;
   queryKey: QueryKeyFilter;
-}) => {
+};
+
+const SelectFilter = (props: SelectFilterPropsType) => {
   const { items, queryKey, onChange } = props;
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const queryFilter = searchParams?.get(queryKey) || "";
 
-  const handleClearFilter = useCallback(() => {
+  const handleClearFilter = () => {
     const isExistingQuery = searchParams.get(queryKey);
 
     if (isExistingQuery) {
@@ -32,7 +33,7 @@ const SelectFilter = (props: {
       search.delete(queryKey);
       router.push(`${pathname}?${search.toString()}`);
     }
-  }, [pathname, searchParams, router, queryKey]);
+  };
 
   return (
     <div className={styles.selectFilter}>

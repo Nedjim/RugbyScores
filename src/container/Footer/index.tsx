@@ -1,4 +1,3 @@
-import { memo } from "react";
 import dayjs from "dayjs";
 import clsx from "clsx";
 import { roboto } from "@/utils";
@@ -48,4 +47,4 @@ const Footer = () => {
   );
 };
 
-export default memo(Footer);
+export default Footer;

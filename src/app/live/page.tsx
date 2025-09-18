@@ -1,4 +1,4 @@
-import { memo, Suspense } from "react";
+import { Suspense } from "react";
 import Loading from "@/app/loading";
 import Live from "@/container/Live";
 
@@ -10,4 +10,4 @@ const MatchesDayPage = async () => {
   );
 };
 
-export default memo(MatchesDayPage);
+export default MatchesDayPage;

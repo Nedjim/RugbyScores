@@ -1,5 +1,4 @@
 "use client";
-import { memo, useMemo } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useCurrentSeason } from "@/libs/hooks";
 import CustomLink from "@/components/CustomLink";
@@ -10,16 +9,11 @@ type CustomLinksProps = {
 };
 
 const CustomLinks = (props: CustomLinksProps) => {
+  const { links } = props;
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const season = useCurrentSeason();
-  const { links } = props;
-
-  const seasonFilter = useMemo(() => {
-    const seasonFilter = searchParams.get("season");
-
-    return seasonFilter || season;
-  }, [season, searchParams]);
+  const seasonFilter = searchParams.get("season") || season;
 
   return (
     <div className={styles.list}>
@@ -41,4 +35,4 @@ const CustomLinks = (props: CustomLinksProps) => {
   );
 };
 
-export default memo(CustomLinks);
+export default CustomLinks;

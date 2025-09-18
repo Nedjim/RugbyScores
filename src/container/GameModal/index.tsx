@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { useState } from "react";
 import { roboto } from "@/utils";
 import { useMatch } from "@/libs/hooks";
 import Fade from "@mui/material/Fade";
@@ -53,4 +53,4 @@ const GameModal = (props: GameModalType) => {
   );
 };
 
-export default memo(GameModal);
+export default GameModal;

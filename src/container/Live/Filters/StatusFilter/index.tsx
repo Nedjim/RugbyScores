@@ -1,5 +1,4 @@
 "use client";
-import { memo } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { MatchStatus } from "@/libs/types";
 import Tag from "@/components/Tag";
@@ -59,4 +58,4 @@ const StatusFilter = () => {
   );
 };
 
-export default memo(StatusFilter);
+export default StatusFilter;

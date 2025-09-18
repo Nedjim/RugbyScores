@@ -1,6 +1,6 @@
 "use client";
 import dayjs, { Dayjs } from "dayjs";
-import { memo, useCallback, useDeferredValue, useMemo, useState } from "react";
+import { useDeferredValue, useState } from "react";
 import { useCompetitions, useCurrentSeason } from "@/libs/hooks";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { DatePickerProps } from "@mui/x-date-pickers/DatePicker";
@@ -19,35 +19,24 @@ const Competitions = () => {
   const { data } = useCompetitions();
   const [search, setSearch] = useState("");
   const deferredSearch = useDeferredValue(search);
+  const seasonFilter = searchParams.get("season") || season;
 
-  const seasonFilter = useMemo(() => {
-    const seasonFilter = searchParams.get("season");
+  const title = `Competitions - ${seasonFilter}`;
 
-    return seasonFilter || season;
-  }, [season, searchParams]);
+  const filteredCompetitions = data
+    .filter((c) => c.season === Number(seasonFilter))
+    .sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
 
-  const title = useMemo(() => {
-    return `Competitions - ${seasonFilter}`;
-  }, [seasonFilter]);
+      return 0;
+    });
 
-  const filteredCompetitions = useMemo(() => {
-    const res = data
-      .filter((c) => c.season === Number(seasonFilter))
-      .sort((a, b) => {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-
-        return 0;
-      });
-
-    return res;
-  }, [data, seasonFilter]);
-
-  const datePickerConfig: DatePickerProps = useMemo(() => {
+  const getDatePickerConfig = () => {
     const seasonFilter = searchParams.get("season");
     const value = dayjs().year(Number(seasonFilter) || season);
     const minDate = dayjs(new Date(MIN_YEAR));
@@ -67,10 +56,10 @@ const Competitions = () => {
         const season = String(dayjs(value).format("YYYY"));
         router.push(`${pathname}?season=${season}`);
       },
-    };
-  }, [router, searchParams, pathname, season]);
+    } as DatePickerProps;
+  };
 
-  const searchResults = useMemo(() => {
+  const getSearchResults = () => {
     if (!deferredSearch) {
       return filteredCompetitions;
     }
@@ -78,14 +67,11 @@ const Competitions = () => {
     return filteredCompetitions.filter((e) =>
       e.name.toLowerCase().includes(deferredSearch.toLowerCase()),
     );
-  }, [filteredCompetitions, deferredSearch]);
+  };
 
-  const handleChangeDate = useCallback(
-    (year: number) => {
-      router.push(`${pathname}?season=${year}`);
-    },
-    [pathname, router],
-  );
+  const handleChangeDate = (year: number) => {
+    router.push(`${pathname}?season=${year}`);
+  };
 
   return (
     <div className={styles.competitions}>
@@ -99,17 +85,17 @@ const Competitions = () => {
           const next = Number(seasonFilter) + 1;
           handleChangeDate(next);
         }}
-        datePickerConfig={datePickerConfig}
+        datePickerConfig={getDatePickerConfig()}
         search={search}
         setSearch={setSearch}
       />
-      {!searchResults.length ? (
+      {!getSearchResults().length ? (
         <EmptyState />
       ) : (
-        <CustomLinks links={searchResults} />
+        <CustomLinks links={getSearchResults()} />
       )}
     </div>
   );
 };
 
-export default memo(Competitions);
+export default Competitions;

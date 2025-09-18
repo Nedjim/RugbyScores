@@ -1,5 +1,4 @@
 "use client";
-import { memo } from "react";
 import { DatePickerProps } from "@mui/x-date-pickers/DatePicker";
 import Search from "@/components/Search";
 import ChevronButton from "@/components/ChevronButton";
@@ -29,4 +28,4 @@ const DateTitle = (props: {
     </div>
   );
 };
-export default memo(DateTitle);
+export default DateTitle;

@@ -1,6 +1,5 @@
 import "normalize.css/normalize.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { memo } from "react";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { roboto } from "@/utils";
@@ -29,4 +28,4 @@ function RootLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default memo(RootLayout);
+export default RootLayout;

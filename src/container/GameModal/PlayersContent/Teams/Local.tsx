@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { Player } from "@/libs/types";
 import GroundPlayer from "@/components/Modal/Player";
 import styles from "./index.module.scss";
@@ -44,4 +43,4 @@ const Local = (props: { teamsheet: Player[]; teamName: string }) => {
   );
 };
 
-export default memo(Local);
+export default Local;

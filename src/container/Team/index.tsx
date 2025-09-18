@@ -1,6 +1,6 @@
 "use client";
 import dayjs from "dayjs";
-import { memo, useMemo, useState } from "react";
+import { useState } from "react";
 import { useTeam } from "@/libs/hooks";
 import { useParams, useSearchParams } from "next/navigation";
 import FilterButton from "@/components/FilterButton";
@@ -17,35 +17,31 @@ const Team = () => {
   const { data } = useTeam(teamIdParam);
   const [showNextMatchs, setShowNextMatchs] = useState(true);
 
-  const filteredData = useMemo(() => {
-    return data
-      .filter((i) => {
-        const { season, comp_id } = i;
+  const filteredData = data
+    .filter((i) => {
+      const { season, comp_id } = i;
 
-        return season === seasonFilter && String(comp_id) === compIdParam;
-      })
-      .sort((a, b) => {
-        const dateA = dayjs(a.date);
-        const dateB = dayjs(b.date);
+      return season === seasonFilter && String(comp_id) === compIdParam;
+    })
+    .sort((a, b) => {
+      const dateA = dayjs(a.date);
+      const dateB = dayjs(b.date);
 
-        if (dateA.isBefore(dateB)) {
-          return -1;
-        }
-        if (dateA.isAfter(dateB)) {
-          return 1;
-        }
+      if (dateA.isBefore(dateB)) {
+        return -1;
+      }
+      if (dateA.isAfter(dateB)) {
+        return 1;
+      }
 
-        return 0;
-      });
-  }, [data, seasonFilter, compIdParam]);
-
-  const matchsByStatus = useMemo(() => {
-    return filteredData.filter((e) => {
-      const isScoreAvailable = e.status === "Result";
-
-      return showNextMatchs ? !isScoreAvailable : isScoreAvailable;
+      return 0;
     });
-  }, [showNextMatchs, filteredData]);
+
+  const matchsByStatus = filteredData.filter((e) => {
+    const isScoreAvailable = e.status === "Result";
+
+    return showNextMatchs ? !isScoreAvailable : isScoreAvailable;
+  });
 
   return (
     <div className={styles.team}>
@@ -75,4 +71,4 @@ const Team = () => {
   );
 };
 
-export default memo(Team);
+export default Team;

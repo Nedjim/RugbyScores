@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { ContentType } from "..";
 import ItemMenu from "@/components/Modal/ItemMenu";
 import styles from "./index.module.scss";
@@ -27,4 +26,4 @@ const Navigation = (props: {
   );
 };
 
-export default memo(Navigation);
+export default Navigation;

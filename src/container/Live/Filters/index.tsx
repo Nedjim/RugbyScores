@@ -1,6 +1,6 @@
 "use client";
 import clsx from "clsx";
-import { memo, useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { roboto } from "@/utils";
 import { getDateFilter, useMatchesByDate } from "@/libs/hooks";
@@ -17,7 +17,6 @@ const Filters = () => {
   const searchParams = useSearchParams();
   const date = getDateFilter(searchParams?.get("date"));
   const { data } = useMatchesByDate(date);
-
   const [showFilters, setShowFilters] = useState(false);
 
   return (
@@ -52,4 +51,4 @@ const Filters = () => {
   );
 };
 
-export default memo(Filters);
+export default Filters;

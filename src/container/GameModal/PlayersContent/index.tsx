@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { MatchResponse } from "@/libs/types";
 import Local from "./Teams/Local";
 import Visitor from "./Teams/Visitor";
@@ -25,4 +24,4 @@ const PlayersContent = (props: { data: MatchResponse["results"] }) => {
   );
 };
 
-export default memo(PlayersContent);
+export default PlayersContent;

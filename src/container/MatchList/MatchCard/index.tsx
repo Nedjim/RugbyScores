@@ -1,6 +1,6 @@
 "use client";
 import dayjs from "dayjs";
-import { memo, useCallback, useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons/faLocationDot";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons/faCircleCheck";
@@ -24,17 +24,17 @@ const MatchCard = (props: { match: Match }) => {
     away_score: awayScore,
   } = match;
 
-  const handleShowResults = useCallback(() => {
+  const handleShowResults = () => {
     showScores(!shouldDisplayScores);
-  }, [shouldDisplayScores]);
+  };
 
-  const handleShowCompositions = useCallback(() => {
+  const handleShowCompositions = () => {
     showCompositions(!shouldDisplayCompositions);
-  }, [shouldDisplayCompositions]);
+  };
 
-  const handleCloseCompositions = useCallback(() => {
+  const handleCloseCompositions = () => {
     showCompositions(false);
-  }, []);
+  };
 
   return (
     <div className={styles.card}>
@@ -73,7 +73,7 @@ const MatchCard = (props: { match: Match }) => {
   );
 };
 
-const MatchCardHeader = memo(function MatchCardHeader(props: { match: Match }) {
+const MatchCardHeader = (props: { match: Match }) => {
   const { match } = props;
   const { comp_name: competionName, status, date } = match;
   const isScoreAvailable = status === "Result";
@@ -90,11 +90,9 @@ const MatchCardHeader = memo(function MatchCardHeader(props: { match: Match }) {
       </div>
     </div>
   );
-});
+};
 
-const MatchCardFooter = memo(function MatchCardFooter(props: {
-  venue: string;
-}) {
+const MatchCardFooter = (props: { venue: string }) => {
   const { venue } = props;
 
   return (
@@ -103,6 +101,6 @@ const MatchCardFooter = memo(function MatchCardFooter(props: {
       <span className={styles.stadium}>{venue}</span>
     </div>
   );
-});
+};
 
-export default memo(MatchCard);
+export default MatchCard;

@@ -1,4 +1,3 @@
-import { memo } from "react";
 import MatchCard from "./MatchCard";
 import { Match } from "@/libs/types";
 import styles from "./index.module.scss";
@@ -15,4 +14,4 @@ const Matches = (props: { data: Match[] }) => {
   );
 };
 
-export default memo(Matches);
+export default Matches;

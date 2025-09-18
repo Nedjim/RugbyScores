@@ -1,5 +1,4 @@
 "use client";
-import { memo, useCallback, useMemo } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { getQueryStringFilter } from "@/utils";
 import { Match } from "@/libs/types";
@@ -13,10 +12,9 @@ function TeamFilter(props: { data: Match[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const compFilter = getQueryStringFilter(searchParams.get("competition"));
 
-  const items = useMemo(() => {
-    const compFilter = getQueryStringFilter(searchParams.get("competition"));
-
+  const getItems = () => {
     const elements = data
       ?.map((el) => {
         const { away, home, comp_name } = el;
@@ -29,24 +27,25 @@ function TeamFilter(props: { data: Match[] }) {
       .flat();
 
     return [...new Set(elements)].sort();
-  }, [data, searchParams]);
+  };
 
-  const handleChange = useCallback(
-    (value: string | null) => {
-      const isQueryExist = searchParams.get(QUERY_KEY);
-      const search = new URLSearchParams(searchParams.toString());
+  const handleChange = (value: string | null) => {
+    const isQueryExist = searchParams.get(QUERY_KEY);
+    const search = new URLSearchParams(searchParams.toString());
 
-      if (isQueryExist) {
-        search.delete(QUERY_KEY);
-      }
-      router.push(`${pathname}?${search.toString()}&${QUERY_KEY}=${value}`);
-    },
-    [pathname, searchParams, router],
-  );
+    if (isQueryExist) {
+      search.delete(QUERY_KEY);
+    }
+    router.push(`${pathname}?${search.toString()}&${QUERY_KEY}=${value}`);
+  };
 
   return (
-    <SelectFilter items={items} onChange={handleChange} queryKey={QUERY_KEY} />
+    <SelectFilter
+      items={getItems()}
+      onChange={handleChange}
+      queryKey={QUERY_KEY}
+    />
   );
 }
 
-export default memo(TeamFilter);
+export default TeamFilter;
