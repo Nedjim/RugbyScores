@@ -1,6 +1,6 @@
 "use client";
 import clsx from "clsx";
-import { memo, useCallback } from "react";
+import { useCallback } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons/faX";
@@ -13,11 +13,11 @@ import { QueryKeyFilter } from "@/types";
 import { createQueryStringFilter } from "@/utils";
 import styles from "./index.module.scss";
 
-function SelectFilter(props: {
+const SelectFilter = (props: {
   items: string[];
   onChange: (value: string) => void;
   queryKey: QueryKeyFilter;
-}) {
+}) => {
   const { items, queryKey, onChange } = props;
   const router = useRouter();
   const pathname = usePathname();
@@ -65,6 +65,6 @@ function SelectFilter(props: {
       </Button>
     </div>
   );
-}
+};
 
-export default memo(SelectFilter);
+export default SelectFilter;

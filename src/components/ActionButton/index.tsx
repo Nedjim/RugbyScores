@@ -1,4 +1,3 @@
-import { memo } from "react";
 import styles from "./index.module.scss";
 
 type ActionButtonType = {
@@ -17,4 +16,4 @@ const ActionButton = (props: ActionButtonType) => {
   );
 };
 
-export default memo(ActionButton);
+export default ActionButton;

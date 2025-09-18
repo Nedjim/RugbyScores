@@ -1,4 +1,3 @@
-import { memo } from "react";
 import Link from "next/link";
 import styles from "./index.module.scss";
 
@@ -18,4 +17,4 @@ const CustomLink = (props: LinkProps) => {
   );
 };
 
-export default memo(CustomLink);
+export default CustomLink;

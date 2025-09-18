@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { ContentType } from "@/container/GameModal";
 import Button from "@mui/material/Button";
 import styles from "./index.module.scss";
@@ -26,4 +25,4 @@ const ItemMenu = (props: {
   );
 };
 
-export default memo(ItemMenu);
+export default ItemMenu;

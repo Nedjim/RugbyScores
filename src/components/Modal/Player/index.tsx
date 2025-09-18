@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { Player } from "@/libs/types";
 import styles from "./index.module.scss";
 
@@ -14,4 +13,4 @@ const GroundPlayer = (props: { player: Player }) => {
   );
 };
 
-export default memo(GroundPlayer);
+export default GroundPlayer;

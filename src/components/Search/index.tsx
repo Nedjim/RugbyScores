@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons/faSearch";
 import TextField from "@mui/material/TextField";
@@ -9,7 +8,7 @@ type SearchProps = {
   value: string;
   setValue: (key: string) => void;
 };
-function Search(props: SearchProps) {
+const Search = (props: SearchProps) => {
   const { value, setValue } = props;
 
   return (
@@ -28,6 +27,6 @@ function Search(props: SearchProps) {
       </Box>
     </div>
   );
-}
+};
 
-export default memo(Search);
+export default Search;

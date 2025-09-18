@@ -1,4 +1,3 @@
-import { memo } from "react";
 import styles from "./index.module.scss";
 import clsx from "clsx";
 
@@ -20,4 +19,4 @@ const Score = (props: ScoreType) => {
   );
 };
 
-export default memo(Score);
+export default Score;

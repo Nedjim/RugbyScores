@@ -1,4 +1,3 @@
-import { memo } from "react";
 import Image from "next/image";
 import EmptyStateImage from "../../../public/empty-state.png";
 import styles from "./index.module.scss";
@@ -23,4 +22,4 @@ const EmptyState = (props: { text?: string }) => {
   );
 };
 
-export default memo(EmptyState);
+export default EmptyState;

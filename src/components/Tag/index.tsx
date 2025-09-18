@@ -1,4 +1,3 @@
-import { memo } from "react";
 import Chip from "@mui/material/Chip";
 
 type TagType = {
@@ -7,7 +6,7 @@ type TagType = {
   onClick: () => void;
 };
 
-const Tag = memo(function Tag(props: TagType) {
+const Tag = (props: TagType) => {
   const { label, isSelected, onClick } = props;
 
   return (
@@ -17,6 +16,6 @@ const Tag = memo(function Tag(props: TagType) {
       onClick={onClick}
     />
   );
-});
+};
 
-export default memo(Tag);
+export default Tag;

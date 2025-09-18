@@ -1,5 +1,4 @@
 import Button from "@mui/material/Button";
-import { memo } from "react";
 
 type FilterButtonProps = {
   label: string;
@@ -7,7 +6,7 @@ type FilterButtonProps = {
   onClick: () => void;
 };
 
-function FilterButton(props: FilterButtonProps) {
+const FilterButton = (props: FilterButtonProps) => {
   const { label, isActive, onClick } = props;
 
   return (
@@ -25,6 +24,6 @@ function FilterButton(props: FilterButtonProps) {
       {label}
     </Button>
   );
-}
+};
 
-export default memo(FilterButton);
+export default FilterButton;

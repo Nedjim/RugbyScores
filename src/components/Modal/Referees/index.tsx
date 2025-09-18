@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { Referee } from "@/libs/types";
 import styles from "../index.module.scss";
 
@@ -21,4 +20,4 @@ const Referees = (props: { referees: Referee[] }) => {
   );
 };
 
-export default memo(Referees);
+export default Referees;

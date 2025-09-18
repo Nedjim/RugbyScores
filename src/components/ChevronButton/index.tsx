@@ -1,5 +1,4 @@
 "use client";
-import { memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
@@ -13,7 +12,7 @@ import styles from "./index.module.scss";
 
 type Direction = "left" | "right" | "down" | "up";
 
-type Props = {
+type ChevronButtonPropsType = {
   direction: Direction;
   onClick: () => void;
 };
@@ -25,7 +24,8 @@ const ICONS: { [key in Direction]: IconDefinition } = {
   up: faAngleUp,
 };
 
-function ChevronButton({ direction, onClick }: Props) {
+const ChevronButton = (props: ChevronButtonPropsType) => {
+  const { direction, onClick } = props;
   const icon = ICONS[direction];
 
   return (
@@ -38,6 +38,6 @@ function ChevronButton({ direction, onClick }: Props) {
       <FontAwesomeIcon icon={icon} />
     </IconButton>
   );
-}
+};
 
-export default memo(ChevronButton);
+export default ChevronButton;

@@ -1,4 +1,3 @@
-import { memo } from "react";
 import GroundPlayer from "../Player";
 import { Player } from "@/libs/types";
 import styles from "../index.module.scss";
@@ -17,4 +16,4 @@ const Subtitutes = (props: { teamsheet: Player[]; teamName: string }) => {
   );
 };
 
-export default memo(Subtitutes);
+export default Subtitutes;

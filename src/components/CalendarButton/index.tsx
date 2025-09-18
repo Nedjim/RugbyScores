@@ -1,12 +1,14 @@
 "use client";
-import { memo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { DatePicker, DatePickerProps } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import IconButton from "@mui/material/IconButton";
 import Image from "next/image";
 
-function CalendarButton(props: { config: DatePickerProps }) {
+type CalendarButtonPropsType = { config: DatePickerProps };
+
+const CalendarButton = (props: CalendarButtonPropsType) => {
   const { config } = props;
   const [isOpen, setOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -45,6 +47,6 @@ function CalendarButton(props: { config: DatePickerProps }) {
       </LocalizationProvider>
     </>
   );
-}
+};
 
-export default memo(CalendarButton);
+export default CalendarButton;
